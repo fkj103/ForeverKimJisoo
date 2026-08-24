@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLISSOO — Kim Jisoo | ForeverKimJisoo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Palette based on #B0989F (BG) & #513D49 (Hover/Accents) */
+      --bg-base: #B0989F;
+      --card-bg: rgba(255, 255, 255, 0.82);
+      --card-border: rgba(255, 255, 255, 0.55);
+      --text-main: #2b1f26;
+      --text-muted: #513D49;
+      --accent-deep: #513D49;
+      --btn-bg: rgba(255, 255, 255, 0.85);
+      --btn-border: rgba(81, 61, 73, 0.18);
+      --btn-hover-bg: #513D49;
+      --btn-hover-text: #ffffff;
+      --slide-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35) 0%, transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(81, 61, 73, 0.25) 0%, transparent 50%),
+        var(--bg-base);
+      color: var(--text-main);
+      padding: 24px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 40px 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(81, 61, 73, 0.22), 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .avatar-container {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 20px;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+      box-shadow: 0 8px 20px rgba(81, 61, 73, 0.2);
+    }
+
+    h1 {
+      font-family: 'Italiana', serif;
+      font-size: 2.35rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .fanbase-tag {
+      font-size: 0.8rem;
+      color: var(--accent-deep);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.85;
+    }
+
+    .bio {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--accent-deep);
+      margin-bottom: 28px;
+      font-weight: 400;
+      opacity: 0.95;
+      text-align: center;
+    }
+
+    .bio p {
+      font-size: 0.88rem;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 15px 20px;
+      border-radius: 14px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--btn-hover-bg);
+      color: var(--btn-hover-text);
+      border-color: var(--btn-hover-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(81, 61, 73, 0.25);
+    }
+
+    .btn.presave {
+      background: #B0989F;
+      color: #2b1f26;
+      border: 1px solid rgba(81, 61, 73, 0.25);
+      font-weight: 600;
+      box-shadow: 0 6px 18px rgba(176, 152, 159, 0.45);
+    }
+
+    .btn.presave:hover {
+      background: #513D49;
+      color: #ffffff;
+      border-color: #513D49;
+      box-shadow: 0 8px 24px rgba(81, 61, 73, 0.35);
+    }
+
+    .btn-active {
+      background: var(--accent-deep) !important;
+      color: #ffffff !important;
+      border-color: var(--accent-deep) !important;
+    }
+
+    .page-view {
+      width: 100%;
+      max-width: 520px;
+      animation: fadeIn 0.35s ease forwards;
+    }
+
+    .guidelines-card {
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(81, 61, 73, 0.22), 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .guidelines-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(81, 61, 73, 0.15);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-deep);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--btn-border);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background: var(--accent-deep);
+      color: #ffffff;
+      border-color: var(--accent-deep);
+      transform: translateX(-2px);
+    }
+
+    .nav-brand {
+      font-family: 'Italiana', serif;
+      font-size: 1.25rem;
+      color: var(--text-main);
+      letter-spacing: 0.04em;
+    }
+
+    .slideshow-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .slideshow-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(81, 61, 73, 0.15);
+      padding-bottom: 12px;
+      margin-bottom: 8px;
+    }
+
+    .slideshow-title {
+      font-family: 'Italiana', serif;
+      font-size: 1.4rem;
+      color: var(--text-main);
+    }
+
+    .slide-image-container {
+      position: relative;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #f3eff1;
+      margin-bottom: 14px;
+      cursor: zoom-in;
+      box-shadow: 0 4px 14px rgba(81, 61, 73, 0.08);
+      border: 1px solid rgba(81, 61, 73, 0.12);
+    }
+
+    .slide-img {
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      display: block;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .slide-image-container:hover .slide-img {
+      transform: scale(1.02);
+    }
+
+    .image-zoom-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(81, 61, 73, 0.82);
+      color: #ffffff;
+      font-size: 0.68rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+      font-weight: 500;
+    }
+
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(20, 12, 16, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-img {
+      max-width: 95%;
+      max-height: 88vh;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: #ffffff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+
+    .tab-btn {
+      white-space: nowrap;
+      font-size: 0.72rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--btn-border);
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--accent-deep);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-deep);
+      color: #ffffff;
+      border-color: var(--accent-deep);
+    }
+
+    .slideshow-card {
+      position: relative;
+      background: var(--slide-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(81, 61, 73, 0.12);
+      border: 1px solid rgba(81, 61, 73, 0.1);
+      touch-action: pan-y;
+    }
+
+    .slide-wrapper {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #fdfbfb 100%);
+    }
+
+    .slide-header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .slide-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: rgba(81, 61, 73, 0.08);
+      color: var(--accent-deep);
+    }
+
+    .drive-folder-container {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid rgba(81, 61, 73, 0.12);
+      box-shadow: 0 10px 30px rgba(81, 61, 73, 0.1);
+    }
+
+    .drive-iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+      display: block;
+    }
+
+    .slide-heading {
+      font-family: 'Italiana', serif;
+      font-size: 1.6rem;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .slide-rules {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .slide-rules li {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: #3e2e37;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .slide-rules li::before {
+      content: "✦";
+      color: var(--accent-deep);
+      font-size: 0.75rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .slide-footer-note {
+      font-size: 0.75rem;
+      color: var(--accent-deep);
+      background: rgba(176, 152, 159, 0.18);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 500;
+      border-left: 3px solid var(--accent-deep);
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(81, 61, 73, 0.15);
+      color: var(--accent-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      z-index: 5;
+    }
+
+    .nav-arrow:hover {
+      background: var(--accent-deep);
+      color: #ffffff;
+    }
+
+    .nav-arrow.prev { left: 10px; }
+    .nav-arrow.next { right: 10px; }
+
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 4px 0;
+    }
+
+    .autoplay-btn {
+      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--btn-border);
+      color: var(--accent-deep);
+      padding: 4px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .indicators {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(81, 61, 73, 0.25);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 22px;
+      border-radius: 10px;
+      background: var(--accent-deep);
+    }
+
+    .counter-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-deep);
+    }
+
+    footer {
+      margin-top: 10px;
+      font-size: 0.72rem;
+      color: var(--accent-deep);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <main class="card">
+      
+      <div class="avatar-container">
+        <img src="https://lh3.googleusercontent.com/d/1cTobQIxQd3-aJYRUCwTBbdZ5NEiYPItk" onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=1cTobQIxQd3-aJYRUCwTBbdZ5NEiYPItk&sz=w500';" alt="Kim Jisoo" class="avatar">
+      </div>
+
+      <h1>JISOO</h1>
+      <p class="fanbase-tag">ForeverKimJisoo Support Base</p>
+      
+      <div class="bio">
+        <p style="font-weight: 700; margin-bottom: 6px;">JISOO SOLO COMEBACK</p>
+        <p style="font-weight: 600; margin-bottom: 14px;">A NEW ERA. A NEW CHAPTER. A NEW MISSION.</p>
+        <p style="margin-bottom: 8px;">Everything you need as a JISOO fan is right here.</p>
+        <p style="margin-bottom: 12px;"><strong>CLICK</strong> below and discover how you can show your support, join fan efforts, and be ready for everything ahead.</p>
+        <p style="margin-bottom: 12px;">🎧 STREAMING GUIDES • FAN PROJECTS • IMPORTANT UPDATES • MORE</p>
+        <p style="font-weight: 700;">READ. PREPARE. TAKE ACTION.<br>Let’s stand together and make JISOO’S NEW ERA UNFORGETTABLE!</p>
+      </div>
+
+      <div class="links">
+        <a href="https://x.com/officialBLISSOO" target="_blank" rel="noreferrer" class="btn presave">
+          ✦ Pre-Save & Music Teaser
+        </a>
+        <a href="https://blissoo.co.kr" target="_blank" rel="noreferrer" class="btn">
+          BLISSOO Official Website
+        </a>
+        <a href="https://youtube.com/@sooyaaa__?si=ZUXNQjaSD4wMoj5b" target="_blank" rel="noreferrer" class="btn">
+          Official YouTube Channel
+        </a>
+        <a href="https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs" target="_blank" rel="noreferrer" class="btn">
+          <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.377 0 12s5.376 12 12 12 12-5.377 12-12S18.624 0 12 0zm5.521 17.341c-.217.357-.681.469-1.038.252-2.837-1.734-6.409-2.127-10.616-1.164-.403.092-.811-.161-.903-.563-.092-.403.161-.812.563-.904 4.603-1.052 8.562-.601 11.742 1.344.357.217.469.681.252 1.035zm1.474-3.273c-.273.444-.858.587-1.302.314-3.246-1.995-8.194-2.572-12.033-1.407-.497.151-1.022-.132-1.173-.629-.151-.497.132-1.022.629-1.173 4.385-1.331 9.846-.689 13.565 1.6 0.444.272.587.857.314 1.295zm.135-3.41c-3.893-2.312-10.319-2.525-14.072-1.385-.6.183-1.237-.168-1.42-.768-.182-.6.168-1.237.768-1.42 4.316-1.31 11.411-1.06 15.897 1.603.539.32.718 1.02.398 1.559-.32.539-1.02.718-1.559.398z"/></svg>
+          Spotify Profile
+        </a>
+        <a href="https://music.apple.com/artist/jisoo/1548008317" target="_blank" rel="noreferrer" class="btn">
+          <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.8 1.11-1.92.99-3.04-.96.04-2.12.64-2.81 1.44-.61.71-1.15 1.85-.99 2.96 1.08.08 2.16-.56 2.81-1.36z"/></svg>
+          Apple Music Profile
+        </a>
+        <a href="https://x.com/officialBLISSOO" target="_blank" rel="noreferrer" class="btn">
+          @officialBLISSOO on X
+        </a>
+        <a href="#guidelines" class="btn">
+          Streaming & Buying Guidelines
+        </a>
+        <a href="https://x.com/ForeverKimJisoo" target="_blank" rel="noreferrer" class="btn">
+          Comeback Support & Fan Projects
+        </a>
+      </div>
+    </main>
+
+    <div id="guidelines-view" class="page-view" style="display: none;">
+      <main class="guidelines-card">
+        <header class="guidelines-nav">
+          <a href="#home" class="back-btn">
+            ← Back
+          </a>
+          <span class="nav-brand">GUIDELINES</span>
+        </header>
+
+        <section id="slideshow-section" class="slideshow-section">
+          <div id="category-tabs-wrapper" class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all', this)">All</button>
+            <button class="tab-btn" onclick="filterCategory('spotify', this)">Spotify</button>
+            <button class="tab-btn" onclick="filterCategory('apple', this)">Apple Music</button>
+            <button class="tab-btn" onclick="filterCategory('youtube', this)">YouTube</button>
+            <button class="tab-btn" onclick="filterCategory('buying', this)">Album Sales</button>
+          </div>
+
+          <div class="slideshow-card" id="slideshow-card">
+            <button class="nav-arrow prev" onclick="prevSlide()" aria-label="Previous Slide">❮</button>
+            <button class="nav-arrow next" onclick="nextSlide()" aria-label="Next Slide">❯</button>
+            
+            <div id="slide-content" class="slide-wrapper">
+              <!-- Slide content rendered dynamically via JS -->
+            </div>
+          </div>
+
+          <div class="controls-bar" id="controls-bar">
+            <button id="autoplay-toggle" class="autoplay-btn" onclick="toggleAutoplay()">▶ Auto-Play</button>
+            <div class="indicators" id="dots-container"></div>
+            <span class="counter-text" id="counter-text">1 / 4</span>
+          </div>
+        </section>
+
+        <footer style="margin-top: 24px;">FOREVERKIMJISOO</footer>
+      </main>
+    </div>
+  </div>
+
+  <div id="lightbox-modal" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Full view guide image">
+  </div>
+
+  <script>
+    const slidesData = [
+      {
+        category: 'spotify',
+        badge: 'Spotify Streaming Guide',
+        driveId: '1fjK5mjtv07b_XGExEDFcJCMLy1X7_PXv',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1fjK5mjtv07b_XGExEDFcJCMLy1X7_PXv',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1fjK5mjtv07b_XGExEDFcJCMLy1X7_PXv&sz=w1000'
+      },
+      {
+        category: 'apple',
+        badge: 'Apple Music Guide',
+        driveId: '1toWYbhEm-e0h7aW_YCeWQSU0bko-nFwL',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1toWYbhEm-e0h7aW_YCeWQSU0bko-nFwL',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1toWYbhEm-e0h7aW_YCeWQSU0bko-nFwL&sz=w1000'
+        },
+      {
+        category: 'youtube',
+        badge: 'YouTube & MV Guide',
+        driveId: '1QGe_mpQZChaD0iT-MjQpJ81iYxhk2fRc',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1QGe_mpQZChaD0iT-MjQpJ81iYxhk2fRc',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1QGe_mpQZChaD0iT-MjQpJ81iYxhk2fRc&sz=w1000'
+        },
+      {
+        category: 'buying',
+        badge: 'Streaming & Album Buying Guide',
+        driveId: '1oYplPsbMk4aLEITaA-96yvYt0XGQU9p8',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1oYplPsbMk4aLEITaA-96yvYt0XGQU9p8',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1oYplPsbMk4aLEITaA-96yvYt0XGQU9p8&sz=w1000'
+        }
+    ];
+
+    let currentFilteredSlides = [...slidesData];
+    let currentIndex = 0;
+    let autoplayInterval = null;
+
+    function renderSlide(index) {
+      if (!currentFilteredSlides || currentFilteredSlides.length === 0) return;
+      
+      const slide = currentFilteredSlides[index];
+      if (!slide) return;
+
+      const wrapper = document.getElementById('slide-content');
+      const fallback = slide.fallbackUrl || slide.imageUrl;
+      const rulesList = slide.rules && Array.isArray(slide.rules) ? slide.rules : [];
+      
+      wrapper.innerHTML = `
+        <div>
+          <div class="slide-header-meta">
+            <span class="slide-badge">${slide.badge || ''}</span>
+          </div>
+          
+          <div class="slide-image-container" onclick="openLightbox('${slide.imageUrl}', '${fallback}')">
+            <img src="${slide.imageUrl}" 
+                 onerror="this.onerror=null; this.src='${fallback}';" 
+                 alt="${slide.title || 'Guide'}" 
+                 class="slide-img">
+            <span class="image-zoom-hint">🔍 Tap image to enlarge</span>
+          </div>
+
+          <h2 class="slide-heading">${slide.title || ''}</h2>
+          ${rulesList.length > 0 ? `
+            <ul class="slide-rules">
+              ${rulesList.map(r => `<li>${r}</li>`).join('')}
+            </ul>
+          ` : ''}
+        </div>
+        ${slide.note ? `<div class="slide-footer-note">${slide.note}</div>` : ''}
+      `;
+
+      // Update Dots
+      const dotsContainer = document.getElementById('dots-container');
+      dotsContainer.innerHTML = currentFilteredSlides.map((_, i) => `
+        <span class="dot ${i === index ? 'active' : ''}" onclick="goToSlide(${i})"></span>
+      `).join('');
+
+      // Update Counter
+      document.getElementById('counter-text').innerText = `${index + 1} / ${currentFilteredSlides.length}`;
+    }
+
+    function openLightbox(imgSrc, fallbackSrc) {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      img.onerror = function() {
+        if (fallbackSrc) {
+          this.onerror = null;
+          this.src = fallbackSrc;
+        }
+      };
+      img.src = imgSrc;
+      modal.classList.add('active');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.remove('active');
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      renderSlide(currentIndex);
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % currentFilteredSlides.length;
+      renderSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + currentFilteredSlides.length) % currentFilteredSlides.length;
+      renderSlide(currentIndex);
+    }
+
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (cat === 'all') {
+        currentFilteredSlides = [...slidesData];
+      } else {
+        currentFilteredSlides = slidesData.filter(s => s.category === cat);
+      }
+      currentIndex = 0;
+      renderSlide(currentIndex);
+    }
+
+    function toggleAutoplay() {
+      const btn = document.getElementById('autoplay-toggle');
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+        btn.innerText = "▶ Auto-Play";
+        btn.style.background = "rgba(255, 255, 255, 0.8)";
+        btn.style.color = "var(--accent-deep)";
+      } else {
+        autoplayInterval = setInterval(nextSlide, 4500);
+        btn.innerText = "⏸ Pause";
+        btn.style.background = "var(--accent-deep)";
+        btn.style.color = "#ffffff";
+      }
+    }
+
+    function toggleSlideshow() {
+      const section = document.getElementById('slideshow-section');
+      const btn = document.getElementById('toggle-guide-btn');
+      
+      if (section.classList.contains('active')) {
+        section.classList.remove('active');
+        btn.classList.remove('btn-active');
+        if (autoplayInterval) toggleAutoplay();
+      } else {
+        section.classList.add('active');
+        btn.classList.add('btn-active');
+        renderSlide(currentIndex);
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Keyboard navigation support
+    document.addEventListener('keydown', (e) => {
+      const section = document.getElementById('slideshow-section');
+      if (section && section.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+      }
+    });
+
+    // Touch Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const card = document.getElementById('slideshow-card');
+    card.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    card.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 40) nextSlide();
+      if (touchEndX > touchStartX + 40) prevSlide();
+    }
+
+    function handleRoute() {
+      const hash = window.location.hash;
+      const homeCard = document.querySelector('main.card');
+      const guidelinesView = document.getElementById('guidelines-view');
+
+      if (hash === '#guidelines') {
+        if (homeCard) homeCard.style.display = 'none';
+        if (guidelinesView) guidelinesView.style.display = 'block';
+        renderSlide(currentIndex);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        if (guidelinesView) guidelinesView.style.display = 'none';
+        if (homeCard) homeCard.style.display = 'block';
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+          autoplayInterval = null;
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    window.addEventListener('hashchange', handleRoute);
+
+    // Initialize first slide and setup route on load
+    window.onload = function() {
+      renderSlide(0);
+      handleRoute();
+    };
+  </script>
+</body>
+</html>
