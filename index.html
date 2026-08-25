@@ -654,7 +654,7 @@
         <a href="#voting-guidelines" class="btn">
           Voting Guidelines
         </a>
-        <a href="https://x.com/ForeverKimJisoo" target="_blank" rel="noreferrer" class="btn">
+        <a href="#fan-projects" class="btn">
           Comeback Support & Fan Projects
         </a>
       </div>
@@ -754,6 +754,73 @@
             <span class="counter-text" id="voting-counter-text">1 / 2</span>
           </div>
         </section>
+      </main>
+    </div>
+
+    <div id="fan-projects-view" class="page-view" style="display: none;">
+      <main class="guidelines-card" style="text-align: center;">
+        <header class="guidelines-nav">
+          <a href="#home" class="back-btn">
+            ← Back
+          </a>
+          <span class="nav-brand">FAN PROJECTS</span>
+        </header>
+
+        <div style="padding: 10px 0 16px;">
+          <h2 style="font-family: 'Italiana', serif; font-size: 1.8rem; margin-bottom: 8px; color: var(--text-main);">Comeback Support & Fan Projects</h2>
+          <p style="font-size: 0.88rem; color: var(--accent-deep); margin-bottom: 24px; line-height: 1.6; max-width: 540px; margin-left: auto; margin-right: auto;">
+            Explore our active fanbase initiatives, support comeback fundraising goals, and participate in special global fan projects for JISOO!
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; max-width: 520px; margin: 0 auto; text-align: left;">
+            
+            <!-- Project Card 1: Fundraiser -->
+            <div style="background: rgba(255,255,255,0.75); border: 1px solid rgba(81, 61, 73, 0.15); border-radius: 18px; padding: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(81,61,73,0.12); color: var(--accent-deep); padding: 4px 10px; border-radius: 10px;">Fundraiser</span>
+                <span style="font-size: 0.75rem; color: var(--accent-deep); font-weight: 600;">✦ Active</span>
+              </div>
+              <h3 style="font-family: 'Italiana', serif; font-size: 1.3rem; color: var(--text-main); margin-bottom: 6px;">Comeback Support Fundraiser</h3>
+              <p style="font-size: 0.82rem; color: var(--accent-deep); line-height: 1.5; margin-bottom: 14px;">
+                Help support digital song purchases, global streaming account passes, and official promotional campaigns for Jisoo's solo comeback.
+              </p>
+              <a href="https://jisooglobalunion.carrd.co/#solomusic" target="_blank" rel="noreferrer" class="btn" style="padding: 10px 16px; font-size: 0.8rem;">
+                ✦ Support & Donate
+              </a>
+            </div>
+
+            <!-- Project Card 2: Ktown FKJ Non-shipped back -->
+            <div style="background: rgba(255,255,255,0.75); border: 1px solid rgba(81, 61, 73, 0.15); border-radius: 18px; padding: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(81,61,73,0.12); color: var(--accent-deep); padding: 4px 10px; border-radius: 10px;">Album Sales</span>
+                <span style="font-size: 0.75rem; color: var(--accent-deep); font-weight: 600;">✦ Active</span>
+              </div>
+              <h3 style="font-family: 'Italiana', serif; font-size: 1.3rem; color: var(--text-main); margin-bottom: 6px;">Ktown FKJ Non-shipped Back</h3>
+              <p style="font-size: 0.82rem; color: var(--accent-deep); line-height: 1.5; margin-bottom: 14px;">
+                Support Jisoo's album sales count on Hanteo & Circle charts through FKJ's non-shipped back album support link on Ktown4u.
+              </p>
+              <a href="https://www.ktown4u.com/eventinfo?eve_no=44502507&biz_no=220" target="_blank" rel="noreferrer" class="btn" style="padding: 10px 16px; font-size: 0.8rem;">
+                ✦ Buy via Ktown4u
+              </a>
+            </div>
+
+            <!-- Project Card 3: Streaming & Socials -->
+            <div style="background: rgba(255,255,255,0.75); border: 1px solid rgba(81, 61, 73, 0.15); border-radius: 18px; padding: 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(81,61,73,0.12); color: var(--accent-deep); padding: 4px 10px; border-radius: 10px;">Streaming & Socials</span>
+                <span style="font-size: 0.75rem; color: var(--accent-deep); font-weight: 600;">✦ Upcoming</span>
+              </div>
+              <h3 style="font-family: 'Italiana', serif; font-size: 1.3rem; color: var(--text-main); margin-bottom: 6px;">Hashtag Tagging & Mass Streaming Parties</h3>
+              <p style="font-size: 0.82rem; color: var(--accent-deep); line-height: 1.5; margin-bottom: 14px;">
+                Join scheduled global streaming parties, boost MV view targets, and trend official comeback taglines across social platforms.
+              </p>
+              <a href="https://x.com/ForeverKimJisoo" target="_blank" rel="noreferrer" class="btn" style="padding: 10px 16px; font-size: 0.8rem;">
+                ✦ View Streaming Schedule
+              </a>
+            </div>
+
+          </div>
+        </div>
       </main>
     </div>
 
@@ -1058,11 +1125,13 @@
       const guidelinesView = document.getElementById('guidelines-view');
       const votingView = document.getElementById('voting-guidelines-view');
       const jisooAppView = document.getElementById('jisoo-app-view');
+      const fanProjectsView = document.getElementById('fan-projects-view');
 
       if (homeCard) homeCard.style.display = 'none';
       if (guidelinesView) guidelinesView.style.display = 'none';
       if (votingView) votingView.style.display = 'none';
       if (jisooAppView) jisooAppView.style.display = 'none';
+      if (fanProjectsView) fanProjectsView.style.display = 'none';
 
       if (hash === '#guidelines') {
         if (guidelinesView) guidelinesView.style.display = 'block';
@@ -1072,6 +1141,8 @@
         renderVotingSlide(votingIndex);
       } else if (hash === '#jisoo-app') {
         if (jisooAppView) jisooAppView.style.display = 'block';
+      } else if (hash === '#fan-projects') {
+        if (fanProjectsView) fanProjectsView.style.display = 'block';
       } else {
         if (homeCard) homeCard.style.display = 'block';
         if (autoplayInterval) {
