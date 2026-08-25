@@ -639,8 +639,8 @@
           <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.8 1.11-1.92.99-3.04-.96.04-2.12.64-2.81 1.44-.61.71-1.15 1.85-.99 2.96 1.08.08 2.16-.56 2.81-1.36z"/></svg>
           Apple Music Profile
         </a>
-        <a href="https://x.com/officialBLISSOO" target="_blank" rel="noreferrer" class="btn">
-          @officialBLISSOO on X
+        <a href="#jisoo-app" class="btn">
+          Jisoo App
         </a>
         <a href="#guidelines" class="btn">
           Streaming & Buying Guidelines
@@ -650,6 +650,39 @@
         </a>
       </div>
     </main>
+
+    <div id="jisoo-app-view" class="page-view" style="display: none;">
+      <main class="guidelines-card" style="text-align: center;">
+        <header class="guidelines-nav">
+          <a href="#home" class="back-btn">
+            ← Back
+          </a>
+          <span class="nav-brand">JISOO APP</span>
+        </header>
+
+        <div style="padding: 10px 0 16px;">
+          <div style="width: 80px; height: 80px; margin: 0 auto 16px; border-radius: 22px; overflow: hidden; box-shadow: 0 8px 24px rgba(81, 61, 73, 0.22); border: 2px solid #ffffff;">
+            <img src="https://lh3.googleusercontent.com/d/1cTobQIxQd3-aJYRUCwTBbdZ5NEiYPItk" onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=1cTobQIxQd3-aJYRUCwTBbdZ5NEiYPItk&sz=w500';" alt="JISOO App" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <h2 style="font-family: 'Italiana', serif; font-size: 1.8rem; margin-bottom: 8px; color: var(--text-main);">Official JISOO App</h2>
+          <p style="font-size: 0.88rem; color: var(--accent-deep); margin-bottom: 24px; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto;">
+            Experience Jisoo's daily life up close! Get exclusive photos, videos, live streams, fan updates, and official membership content.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto;">
+            <a href="https://play.google.com/store/apps/details?id=com.jisoo.platform" target="_blank" rel="noreferrer" class="btn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+              <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.37 2.37 0 0 1-.61-1.614V3.428c0-.62.222-1.189.609-1.614zm11.3 11.3l2.84 2.84-11.87 6.848 9.03-9.688zm0-2.228L5.88 1.198l11.87 6.848-2.84 2.84zm1.986 1.114l3.525 2.032c.866.5.866 1.308 0 1.808l-3.525 2.032-2.544-2.544 2.544-2.528z"/></svg>
+              Google Play Store
+            </a>
+
+            <a href="https://apps.apple.com/app/jisoo/id6740193950" target="_blank" rel="noreferrer" class="btn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+              <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.8 1.11-1.92.99-3.04-.96.04-2.12.64-2.81 1.44-.61.71-1.15 1.85-.99 2.96 1.08.08 2.16-.56 2.81-1.36z"/></svg>
+              Apple App Store
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
 
     <div id="guidelines-view" class="page-view" style="display: none;">
       <main class="guidelines-card">
@@ -904,13 +937,17 @@
       const hash = window.location.hash;
       const homeCard = document.querySelector('main.card');
       const guidelinesView = document.getElementById('guidelines-view');
+      const jisooAppView = document.getElementById('jisoo-app-view');
 
       if (homeCard) homeCard.style.display = 'none';
       if (guidelinesView) guidelinesView.style.display = 'none';
+      if (jisooAppView) jisooAppView.style.display = 'none';
 
       if (hash === '#guidelines') {
         if (guidelinesView) guidelinesView.style.display = 'block';
         renderSlide(currentIndex);
+      } else if (hash === '#jisoo-app') {
+        if (jisooAppView) jisooAppView.style.display = 'block';
       } else {
         if (homeCard) homeCard.style.display = 'block';
         if (autoplayInterval) {
