@@ -651,6 +651,9 @@
         <a href="#guidelines" class="btn">
           Streaming & Buying Guidelines
         </a>
+        <a href="#voting-guidelines" class="btn">
+          Voting Guidelines
+        </a>
         <a href="https://x.com/ForeverKimJisoo" target="_blank" rel="noreferrer" class="btn">
           Comeback Support & Fan Projects
         </a>
@@ -726,6 +729,34 @@
       </main>
     </div>
 
+    <div id="voting-guidelines-view" class="page-view" style="display: none;">
+      <main class="guidelines-card">
+        <header class="guidelines-nav">
+          <a href="#home" class="back-btn">
+            ← Back
+          </a>
+          <span class="nav-brand">VOTING GUIDELINES</span>
+        </header>
+
+        <section id="voting-slideshow-section" class="slideshow-section">
+          <div class="slideshow-card" id="voting-slideshow-card">
+            <button class="nav-arrow prev" onclick="prevVotingSlide()" aria-label="Previous Slide">❮</button>
+            <button class="nav-arrow next" onclick="nextVotingSlide()" aria-label="Next Slide">❯</button>
+            
+            <div id="voting-slide-content" class="slide-wrapper">
+              <!-- Voting slide content rendered dynamically via JS -->
+            </div>
+          </div>
+
+          <div class="controls-bar" id="voting-controls-bar">
+            <button id="voting-autoplay-toggle" class="autoplay-btn" onclick="toggleVotingAutoplay()">▶ Auto-Play</button>
+            <div class="indicators" id="voting-dots-container"></div>
+            <span class="counter-text" id="voting-counter-text">1 / 2</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
     <!-- Contact Container above Footer -->
     <section class="contact-card">
       <p class="contact-title">Connect With ForeverKimJisoo</p>
@@ -785,9 +816,27 @@
         }
     ];
 
+    const votingSlidesData = [
+      {
+        badge: 'Voting Guide - Part 1',
+        driveId: '1JxYppBx6HRzRiKUyTp2khNGI35Hlvc6s',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1JxYppBx6HRzRiKUyTp2khNGI35Hlvc6s',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1JxYppBx6HRzRiKUyTp2khNGI35Hlvc6s&sz=w1000'
+      },
+      {
+        badge: 'Voting Guide - Part 2',
+        driveId: '16TzUy1uDkEI0EkE2Y0dFMibBHR3fJE8L',
+        imageUrl: 'https://lh3.googleusercontent.com/d/16TzUy1uDkEI0EkE2Y0dFMibBHR3fJE8L',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=16TzUy1uDkEI0EkE2Y0dFMibBHR3fJE8L&sz=w1000'
+      }
+    ];
+
     let currentFilteredSlides = [...slidesData];
     let currentIndex = 0;
     let autoplayInterval = null;
+
+    let votingIndex = 0;
+    let votingAutoplayInterval = null;
 
     function renderSlide(index) {
       if (!currentFilteredSlides || currentFilteredSlides.length === 0) return;
@@ -833,6 +882,41 @@
       document.getElementById('counter-text').innerText = `${index + 1} / ${currentFilteredSlides.length}`;
     }
 
+    function renderVotingSlide(index) {
+      if (!votingSlidesData || votingSlidesData.length === 0) return;
+      
+      const slide = votingSlidesData[index];
+      if (!slide) return;
+
+      const wrapper = document.getElementById('voting-slide-content');
+      const fallback = slide.fallbackUrl || slide.imageUrl;
+      
+      wrapper.innerHTML = `
+        <div>
+          <div class="slide-header-meta">
+            <span class="slide-badge">${slide.badge || ''}</span>
+          </div>
+          
+          <div class="slide-image-container" onclick="openLightbox('${slide.imageUrl}', '${fallback}')">
+            <img src="${slide.imageUrl}" 
+                 onerror="this.onerror=null; this.src='${fallback}';" 
+                 alt="Voting Guide" 
+                 class="slide-img">
+            <span class="image-zoom-hint">🔍 Tap image to enlarge</span>
+          </div>
+        </div>
+      `;
+
+      // Update Dots
+      const dotsContainer = document.getElementById('voting-dots-container');
+      dotsContainer.innerHTML = votingSlidesData.map((_, i) => `
+        <span class="dot ${i === index ? 'active' : ''}" onclick="goToVotingSlide(${i})"></span>
+      `).join('');
+
+      // Update Counter
+      document.getElementById('voting-counter-text').innerText = `${index + 1} / ${votingSlidesData.length}`;
+    }
+
     function openLightbox(imgSrc, fallbackSrc) {
       const modal = document.getElementById('lightbox-modal');
       const img = document.getElementById('lightbox-img');
@@ -866,6 +950,21 @@
       renderSlide(currentIndex);
     }
 
+    function goToVotingSlide(index) {
+      votingIndex = index;
+      renderVotingSlide(votingIndex);
+    }
+
+    function nextVotingSlide() {
+      votingIndex = (votingIndex + 1) % votingSlidesData.length;
+      renderVotingSlide(votingIndex);
+    }
+
+    function prevVotingSlide() {
+      votingIndex = (votingIndex - 1 + votingSlidesData.length) % votingSlidesData.length;
+      renderVotingSlide(votingIndex);
+    }
+
     function filterCategory(cat, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
@@ -895,32 +994,35 @@
       }
     }
 
-    function toggleSlideshow() {
-      const section = document.getElementById('slideshow-section');
-      const btn = document.getElementById('toggle-guide-btn');
-      
-      if (section.classList.contains('active')) {
-        section.classList.remove('active');
-        btn.classList.remove('btn-active');
-        if (autoplayInterval) toggleAutoplay();
+    function toggleVotingAutoplay() {
+      const btn = document.getElementById('voting-autoplay-toggle');
+      if (votingAutoplayInterval) {
+        clearInterval(votingAutoplayInterval);
+        votingAutoplayInterval = null;
+        btn.innerText = "▶ Auto-Play";
+        btn.style.background = "rgba(255, 255, 255, 0.8)";
+        btn.style.color = "var(--accent-deep)";
       } else {
-        section.classList.add('active');
-        btn.classList.add('btn-active');
-        renderSlide(currentIndex);
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        votingAutoplayInterval = setInterval(nextVotingSlide, 4500);
+        btn.innerText = "⏸ Pause";
+        btn.style.background = "var(--accent-deep)";
+        btn.style.color = "#ffffff";
       }
     }
 
     // Keyboard navigation support
     document.addEventListener('keydown', (e) => {
-      const section = document.getElementById('slideshow-section');
-      if (section && section.classList.contains('active')) {
+      const hash = window.location.hash;
+      if (hash === '#guidelines') {
         if (e.key === 'ArrowLeft') prevSlide();
         if (e.key === 'ArrowRight') nextSlide();
+      } else if (hash === '#voting-guidelines') {
+        if (e.key === 'ArrowLeft') prevVotingSlide();
+        if (e.key === 'ArrowRight') nextVotingSlide();
       }
     });
 
-    // Touch Swipe Support
+    // Touch Swipe Support for Guidelines
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -931,27 +1033,43 @@
 
     card.addEventListener('touchend', e => {
       touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, false);
-
-    function handleSwipe() {
       if (touchEndX < touchStartX - 40) nextSlide();
       if (touchEndX > touchStartX + 40) prevSlide();
-    }
+    }, false);
+
+    // Touch Swipe Support for Voting Guidelines
+    let votingTouchStartX = 0;
+    let votingTouchEndX = 0;
+
+    const votingCard = document.getElementById('voting-slideshow-card');
+    votingCard.addEventListener('touchstart', e => {
+      votingTouchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    votingCard.addEventListener('touchend', e => {
+      votingTouchEndX = e.changedTouches[0].screenX;
+      if (votingTouchEndX < votingTouchStartX - 40) nextVotingSlide();
+      if (votingTouchEndX > votingTouchStartX + 40) prevVotingSlide();
+    }, false);
 
     function handleRoute() {
       const hash = window.location.hash;
       const homeCard = document.querySelector('main.card');
       const guidelinesView = document.getElementById('guidelines-view');
+      const votingView = document.getElementById('voting-guidelines-view');
       const jisooAppView = document.getElementById('jisoo-app-view');
 
       if (homeCard) homeCard.style.display = 'none';
       if (guidelinesView) guidelinesView.style.display = 'none';
+      if (votingView) votingView.style.display = 'none';
       if (jisooAppView) jisooAppView.style.display = 'none';
 
       if (hash === '#guidelines') {
         if (guidelinesView) guidelinesView.style.display = 'block';
         renderSlide(currentIndex);
+      } else if (hash === '#voting-guidelines') {
+        if (votingView) votingView.style.display = 'block';
+        renderVotingSlide(votingIndex);
       } else if (hash === '#jisoo-app') {
         if (jisooAppView) jisooAppView.style.display = 'block';
       } else {
@@ -960,15 +1078,20 @@
           clearInterval(autoplayInterval);
           autoplayInterval = null;
         }
+        if (votingAutoplayInterval) {
+          clearInterval(votingAutoplayInterval);
+          votingAutoplayInterval = null;
+        }
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     window.addEventListener('hashchange', handleRoute);
 
-    // Initialize first slide and setup route on load
+    // Initialize first slides and setup route on load
     window.onload = function() {
       renderSlide(0);
+      renderVotingSlide(0);
       handleRoute();
     };
   </script>
