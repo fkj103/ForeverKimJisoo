@@ -38,8 +38,8 @@
       align-items: center;
       justify-content: center;
       background: 
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35) 0%, transparent 45%),
-        radial-gradient(circle at 80% 80%, rgba(81, 61, 73, 0.25) 0%, transparent 50%),
+        linear-gradient(rgba(43, 31, 38, 0.3), rgba(43, 31, 38, 0.3)),
+        url('https://www.jisoo.io/albums/click/countdown/park-desktop-v2.webp') center/cover no-repeat fixed,
         var(--bg-base);
       color: var(--text-main);
       padding: 24px 16px;
@@ -47,7 +47,7 @@
 
     .container {
       width: 100%;
-      max-width: 480px;
+      max-width: 640px;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -60,10 +60,16 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--card-border);
       border-radius: 28px;
-      padding: 40px 28px;
+      padding: 40px 36px;
       text-align: center;
       box-shadow: 0 20px 50px rgba(81, 61, 73, 0.22), 0 4px 12px rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 32px 20px;
+      }
     }
 
     .avatar-container {
@@ -172,7 +178,7 @@
 
     .page-view {
       width: 100%;
-      max-width: 520px;
+      max-width: 100%;
       animation: fadeIn 0.35s ease forwards;
     }
 
@@ -183,7 +189,7 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--card-border);
       border-radius: 28px;
-      padding: 24px;
+      padding: 28px;
       box-shadow: 0 20px 50px rgba(81, 61, 73, 0.22), 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
@@ -263,7 +269,7 @@
     .slide-img {
       width: 100%;
       height: auto;
-      max-height: 420px;
+      max-height: 560px;
       object-fit: contain;
       display: block;
       border-radius: 15px;
@@ -626,6 +632,9 @@
       <div class="links">
         <a href="https://jisoo.lnk.to/CLICK" target="_blank" rel="noreferrer" class="btn presave">
           ✦ Pre-Save Links
+        </a>
+        <a href="https://jisoo.io" target="_blank" rel="noreferrer" class="btn">
+          Jisoo Website
         </a>
         <a href="https://blissoo.co.kr" target="_blank" rel="noreferrer" class="btn">
           BLISSOO Official Website
