@@ -162,16 +162,15 @@
       box-shadow: 0 8px 24px rgba(81, 61, 73, 0.35);
     }
 
-    .btn-active {
-      background: var(--accent-deep) !important;
-      color: #ffffff !important;
-      border-color: var(--accent-deep) !important;
-    }
-
     .page-view {
       width: 100%;
       max-width: 100%;
       animation: fadeIn 0.35s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .guidelines-card {
@@ -231,19 +230,23 @@
       text-align: left;
     }
 
-    .slideshow-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(81, 61, 73, 0.15);
-      padding-bottom: 12px;
-      margin-bottom: 8px;
+    .slideshow-card {
+      position: relative;
+      background: var(--slide-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(81, 61, 73, 0.12);
+      border: 1px solid rgba(81, 61, 73, 0.1);
+      touch-action: pan-y;
     }
 
-    .slideshow-title {
-      font-family: 'Italiana', serif;
-      font-size: 1.4rem;
-      color: var(--text-main);
+    .slide-wrapper {
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background: linear-gradient(135deg, #ffffff 0%, #fdfbfb 100%);
     }
 
     .slide-image-container {
@@ -272,18 +275,122 @@
       transform: scale(1.02);
     }
 
-    .image-zoom-hint {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: rgba(81, 61, 73, 0.82);
+    /* Story-Style Segmented Progress Indicator */
+    .story-progress-container {
+      display: flex;
+      gap: 6px;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .story-segment {
+      flex: 1;
+      height: 5px;
+      background: rgba(81, 61, 73, 0.18);
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .story-segment:hover {
+      height: 7px;
+      background: rgba(81, 61, 73, 0.3);
+    }
+
+    .story-segment-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent-deep);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .story-segment.completed .story-segment-fill {
+      width: 100%;
+    }
+
+    .story-segment.active .story-segment-fill {
+      width: 100%;
+      box-shadow: 0 0 8px rgba(81, 61, 73, 0.4);
+    }
+
+    .playlist-section-header {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin-top: 14px;
+      margin-bottom: 12px;
+      text-align: left;
+      opacity: 0.9;
+    }
+
+    .playlist-card-tile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 20px;
+      background: #B0989F;
+      border: 1px solid rgba(81, 61, 73, 0.25);
+      border-radius: 14px;
+      text-decoration: none;
+      color: #2b1f26;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 18px rgba(176, 152, 159, 0.45);
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .playlist-card-tile:hover {
+      background: #513D49;
       color: #ffffff;
-      font-size: 0.68rem;
-      padding: 4px 10px;
-      border-radius: 12px;
-      backdrop-filter: blur(4px);
-      pointer-events: none;
+      border-color: #513D49;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(81, 61, 73, 0.35);
+    }
+
+    .playlist-tile-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #513D49;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .playlist-card-tile:hover .playlist-tile-icon {
+      background: #ffffff;
+      color: #513D49;
+    }
+
+    .playlist-tile-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .playlist-tile-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.25;
+      color: inherit;
+    }
+
+    .playlist-tile-sub {
+      font-size: 0.76rem;
       font-weight: 500;
+      opacity: 0.85;
+      color: inherit;
     }
 
     .lightbox-modal {
@@ -336,347 +443,6 @@
 
     .lightbox-close:hover {
       background: rgba(255, 255, 255, 0.4);
-    }
-
-    /* Story-Style Segmented Progress Indicator */
-    .story-progress-container {
-      display: flex;
-      gap: 8px;
-      width: 100%;
-      margin-bottom: 12px;
-    }
-
-    .story-segment {
-      flex: 1;
-      height: 5px;
-      background: rgba(81, 61, 73, 0.18);
-      border-radius: 3px;
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.25s ease;
-    }
-
-    .story-segment:hover {
-      height: 7px;
-      background: rgba(81, 61, 73, 0.3);
-    }
-
-    .story-segment-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent-deep);
-      border-radius: 3px;
-      transition: width 0.3s ease;
-    }
-
-    .story-segment.completed .story-segment-fill {
-      width: 100%;
-    }
-
-    .story-segment.active .story-segment-fill {
-      width: 100%;
-      box-shadow: 0 0 8px rgba(81, 61, 73, 0.4);
-    }
-
-    .story-labels-bar {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .story-label-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 10px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      border-radius: 12px;
-      border: 1px solid var(--btn-border);
-      background: rgba(255, 255, 255, 0.7);
-      color: var(--accent-deep);
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.25s ease;
-      white-space: nowrap;
-    }
-
-    .story-label-btn:hover {
-      background: rgba(255, 255, 255, 0.95);
-      transform: translateY(-1px);
-    }
-
-    .story-label-btn.active {
-      background: var(--accent-deep);
-      color: #ffffff;
-      border-color: var(--accent-deep);
-      box-shadow: 0 4px 12px rgba(81, 61, 73, 0.2);
-    }
-
-    .category-tabs {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      scrollbar-width: thin;
-    }
-
-    /* Tile Style Navigation Grid */
-    .tile-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    @media (max-width: 640px) {
-      .tile-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-      }
-    }
-
-    .guideline-tile {
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid var(--btn-border);
-      border-radius: 16px;
-      padding: 12px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      text-align: center;
-      color: var(--accent-deep);
-    }
-
-    .guideline-tile:hover {
-      background: rgba(255, 255, 255, 0.95);
-      transform: translateY(-2px);
-      border-color: var(--accent-deep);
-      box-shadow: 0 6px 16px rgba(81, 61, 73, 0.12);
-    }
-
-    .guideline-tile.active {
-      background: var(--accent-deep);
-      color: #ffffff !important;
-      border-color: var(--accent-deep);
-      box-shadow: 0 8px 20px rgba(81, 61, 73, 0.25);
-    }
-
-    .guideline-tile.active svg {
-      fill: #ffffff !important;
-    }
-
-    .guideline-tile.active .tile-title {
-      color: #ffffff !important;
-    }
-
-    .tab-btn {
-      white-space: nowrap;
-      font-size: 0.72rem;
-      padding: 6px 12px;
-      border-radius: 20px;
-      border: 1px solid var(--btn-border);
-      background: rgba(255, 255, 255, 0.6);
-      color: var(--accent-deep);
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .tab-btn.active {
-      background: var(--accent-deep);
-      color: #ffffff;
-      border-color: var(--accent-deep);
-    }
-
-    .slideshow-card {
-      position: relative;
-      background: var(--slide-bg);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(81, 61, 73, 0.12);
-      border: 1px solid rgba(81, 61, 73, 0.1);
-      touch-action: pan-y;
-    }
-
-    .slide-wrapper {
-      position: relative;
-      min-height: 400px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 24px;
-      background: linear-gradient(135deg, #ffffff 0%, #fdfbfb 100%);
-    }
-
-    .slide-header-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
-    .slide-badge {
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 4px 10px;
-      border-radius: 12px;
-      background: rgba(81, 61, 73, 0.08);
-      color: var(--accent-deep);
-    }
-
-    .drive-folder-container {
-      width: 100%;
-      border-radius: 20px;
-      overflow: hidden;
-      background: #ffffff;
-      border: 1px solid rgba(81, 61, 73, 0.12);
-      box-shadow: 0 10px 30px rgba(81, 61, 73, 0.1);
-    }
-
-    .drive-iframe {
-      width: 100%;
-      height: 480px;
-      border: none;
-      display: block;
-    }
-
-    .slide-heading {
-      font-family: 'Italiana', serif;
-      font-size: 1.6rem;
-      color: var(--text-main);
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-
-    .slide-rules {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .slide-rules li {
-      font-size: 0.82rem;
-      line-height: 1.5;
-      color: #3e2e37;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .slide-rules li::before {
-      content: "✦";
-      color: var(--accent-deep);
-      font-size: 0.75rem;
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-
-    .slide-footer-note {
-      font-size: 0.75rem;
-      color: var(--accent-deep);
-      background: rgba(176, 152, 159, 0.18);
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-weight: 500;
-      border-left: 3px solid var(--accent-deep);
-    }
-
-    .nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(81, 61, 73, 0.15);
-      color: var(--accent-deep);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
-      z-index: 5;
-    }
-
-    .nav-arrow:hover {
-      background: var(--accent-deep);
-      color: #ffffff;
-    }
-
-    .nav-arrow.prev { left: 10px; }
-    .nav-arrow.next { right: 10px; }
-
-    .controls-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 4px 0;
-    }
-
-    .autoplay-btn {
-      font-size: 0.72rem;
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid var(--btn-border);
-      color: var(--accent-deep);
-      padding: 4px 10px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .indicators {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(81, 61, 73, 0.25);
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .dot.active {
-      width: 22px;
-      border-radius: 10px;
-      background: var(--accent-deep);
-    }
-
-    .counter-text {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent-deep);
-    }
-
-    footer {
-      margin-top: 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #ffffff;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.95;
-      text-align: center;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     .contact-card {
@@ -735,13 +501,26 @@
       transform: translateY(-3px) scale(1.06);
       box-shadow: 0 8px 18px rgba(81, 61, 73, 0.28);
     }
+
+    footer {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.95;
+      text-align: center;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <main class="card">
-      
+    
+    <!-- Home Page Card -->
+    <main id="home-view" class="card">
       <div class="avatar-container">
         <img src="https://lh3.googleusercontent.com/d/1cTobQIxQd3-aJYRUCwTBbdZ5NEiYPItk" onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=1cTobQIxQd3-aJYRUCwTBbdZ5NEiYPItk&sz=w500';" alt="Kim Jisoo" class="avatar">
       </div>
@@ -754,10 +533,10 @@
         <p style="font-weight: 600; margin-bottom: 14px;">A NEW ERA. A NEW CHAPTER. A NEW MISSION.</p>
         <p style="margin-bottom: 8px;">Everything you need as a JISOO fan is right here.</p>
         <p style="margin-bottom: 12px;"><strong>CLICK</strong> below and discover how you can show your support, join fan efforts, and be ready for everything ahead.</p>
-        </div>
+      </div>
 
       <div class="links">
-        <a href="https://jisoo.lnk.to/CLICK" target="_blank" rel="noreferrer" class="btn presave">
+        <a href="https://jisoo.lnk.to/CLICK" target="_blank" rel="noreferrer" class="btn">
           ✦ Pre-Save and Pre-Order Links
         </a>
         <a href="https://jisoo.io" target="_blank" rel="noreferrer" class="btn">
@@ -820,11 +599,10 @@
           <a href="#home" class="back-btn">
             ← Back
           </a>
-          <span class="nav-brand">GUIDELINES</span>
+          <span class="nav-brand">STREAMING GUIDELINES</span>
         </header>
 
         <section id="slideshow-section" class="slideshow-section">
-          <!-- Active Guideline Content Tile Card -->
           <div class="slideshow-card" id="slideshow-card">
             <div id="slide-content" class="slide-wrapper">
               <!-- Slide content rendered dynamically via JS -->
@@ -848,11 +626,6 @@
             <div id="voting-slide-content" class="slide-wrapper">
               <!-- Voting slide content rendered dynamically via JS -->
             </div>
-          </div>
-
-          <div class="controls-bar" id="voting-controls-bar">
-            <button id="voting-autoplay-toggle" class="autoplay-btn" onclick="toggleVotingAutoplay()">▶ Auto-Play</button>
-            <span class="counter-text" id="voting-counter-text">1 / 2</span>
           </div>
         </section>
       </main>
@@ -940,7 +713,6 @@
       </main>
     </div>
 
-    <!-- Contact Container above Footer -->
     <section class="contact-card">
       <p class="contact-title">Connect With ForeverKimJisoo</p>
       <div class="social-icons">
@@ -973,375 +745,316 @@
         category: 'spotify',
         shortTitle: 'Spotify',
         badge: 'Spotify Streaming Guide',
-        driveId: '1fjK5mjtv07b_XGExEDFcJCMLy1X7_PXv',
-        imageUrl: 'https://lh3.googleusercontent.com/d/1fjK5mjtv07b_XGExEDFcJCMLy1X7_PXv',
-        fallbackUrl: 'https://drive.google.com/thumbnail?id=1fjK5mjtv07b_XGExEDFcJCMLy1X7_PXv&sz=w1000',
+        driveId: '1dDr1n5OjW29ZoRb-WDW4idtWLCc5US5K',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1dDr1n5OjW29ZoRb-WDW4idtWLCc5US5K',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1dDr1n5OjW29ZoRb-WDW4idtWLCc5US5K&sz=w1000',
         profileLink: 'https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs',
         profileText: 'Official Spotify Profile',
+        playlistHeader: 'SPOTIFY PLAYLISTS',
         icon: '<svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.377 0 12s5.376 12 12 12 12-5.377 12-12S18.624 0 12 0zm5.521 17.341c-.217.357-.681.469-1.038.252-2.837-1.734-6.409-2.127-10.616-1.164-.403.092-.811-.161-.903-.563-.092-.403.161-.812.563-.904 4.603-1.052 8.562-.601 11.742 1.344.357.217.469.681.252 1.035zm1.474-3.273c-.273.444-.858.587-1.302.314-3.246-1.995-8.194-2.572-12.033-1.407-.497.151-1.022-.132-1.173-.629-.151-.497.132-1.022.629-1.173 4.385-1.331 9.846-.689 13.565 1.6 0.444.272.587.857.314 1.295zm.135-3.41c-3.893-2.312-10.319-2.525-14.072-1.385-.6.183-1.237-.168-1.42-.768-.182-.6.168-1.237.768-1.42 4.316-1.31 11.411-1.06 15.897 1.603.539.32.718 1.02.398 1.559-.32.539-1.02.718-1.559.398z"/></svg>',
         playlists: [
-          { name: 'This Is JISOO', desc: 'Official Spotify essential playlist featuring top Jisoo solo hits & favorites.', link: 'https://open.spotify.com/playlist/37i9dQZF1DZ06evO0bOa2I', badge: 'Official' },
-          { name: 'JISOO Comeback Focus Loop', desc: 'Streaming team curated 2-3hr loop playlist optimized for chart goals.', link: 'https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs', badge: 'Streaming Team' },
-          { name: 'JISOO Complete Discography', desc: 'All solo singles, B-sides, soundtracks, and collaborations in order.', link: 'https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs', badge: 'Discography' }
+          { name: 'This Is JISOO', sub: 'Official Playlist • 3 Hours', link: 'https://open.spotify.com/playlist/37i9dQZF1DZ06evO0bOa2I' },
+          { name: 'JISOO Comeback Focus Loop', sub: '4 Hours', link: 'https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs' },
+          { name: 'JISOO Complete Discography', sub: '6 Hours', link: 'https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs' }
         ]
       },
       {
         category: 'apple',
         shortTitle: 'Apple Music',
         badge: 'Apple Music Guide',
-        driveId: '1toWYbhEm-e0h7aW_YCeWQSU0bko-nFwL',
-        imageUrl: 'https://lh3.googleusercontent.com/d/1toWYbhEm-e0h7aW_YCeWQSU0bko-nFwL',
-        fallbackUrl: 'https://drive.google.com/thumbnail?id=1toWYbhEm-e0h7aW_YCeWQSU0bko-nFwL&sz=w1000',
+        driveId: '1rr6Tqx8tmtY1ejon2pJMk66Mf70S5m5I',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1rr6Tqx8tmtY1ejon2pJMk66Mf70S5m5I',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1rr6Tqx8tmtY1ejon2pJMk66Mf70S5m5I&sz=w1000',
         profileLink: 'https://music.apple.com/artist/jisoo/1548008317',
         profileText: 'Official Apple Music Profile',
+        playlistHeader: 'APPLE MUSIC PLAYLISTS',
         icon: '<svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.8 1.11-1.92.99-3.04-.96.04-2.12.64-2.81 1.44-.61.71-1.15 1.85-.99 2.96 1.08.08 2.16-.56 2.81-1.36z"/></svg>',
         playlists: [
-          { name: 'JISOO Essentials', desc: 'Apple Music official curated list of essential solo tracks.', link: 'https://music.apple.com/artist/jisoo/1548008317', badge: 'Official' },
-          { name: 'JISOO Artist Station', desc: 'Non-stop personalized radio station based on Jisoo\'s discography.', link: 'https://music.apple.com/artist/jisoo/1548008317', badge: 'Radio Station' },
-          { name: 'JISOO Comeback Focus', desc: 'Optimized playlist for repeat Apple Music streams.', link: 'https://music.apple.com/artist/jisoo/1548008317', badge: 'Streaming Team' }
+          { name: 'JISOO Essentials', sub: 'Official Essentials • 3 Hours', link: 'https://music.apple.com/artist/jisoo/1548008317' },
+          { name: 'JISOO Artist Station', sub: 'Non-stop Radio Station', link: 'https://music.apple.com/artist/jisoo/1548008317' },
+          { name: 'JISOO Comeback Focus', sub: '4 Hours', link: 'https://music.apple.com/artist/jisoo/1548008317' }
         ]
       },
       {
         category: 'youtube',
         shortTitle: 'YouTube',
         badge: 'YouTube & MV Guide',
-        driveId: '1QGe_mpQZChaD0iT-MjQpJ81iYxhk2fRc',
-        imageUrl: 'https://lh3.googleusercontent.com/d/1QGe_mpQZChaD0iT-MjQpJ81iYxhk2fRc',
-        fallbackUrl: 'https://drive.google.com/thumbnail?id=1QGe_mpQZChaD0iT-MjQpJ81iYxhk2fRc&sz=w1000',
+        driveId: '1J4SOBjz5OLRd0wy9JAEsddYxFW5oohFB',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1J4SOBjz5OLRd0wy9JAEsddYxFW5oohFB',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1J4SOBjz5OLRd0wy9JAEsddYxFW5oohFB&sz=w1000',
         profileLink: 'https://youtube.com/@sooyaaa__?si=ZUXNQjaSD4wMoj5b',
         profileText: 'Official YouTube Channel',
+        playlistHeader: 'YOUTUBE PLAYLISTS',
         icon: '<svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
         playlists: [
-          { name: 'Official Music Videos', desc: 'Watch all official music videos, teasers, and performance clips.', link: 'https://youtube.com/@sooyaaa__', badge: 'Official MVs' },
-          { name: 'JISOO MV Streaming Loop', desc: 'Curated video loop playlist to maximize verified YouTube views.', link: 'https://youtube.com/@sooyaaa__', badge: 'MV Stream' },
-          { name: 'Behind The Scenes & Vlogs', desc: 'Exclusive behind-the-scenes, album preparation, and special vlogs.', link: 'https://youtube.com/@sooyaaa__', badge: 'Exclusive' }
+          { name: 'Official Music Videos', sub: 'Official Channel MVs & Teasers', link: 'https://youtube.com/@sooyaaa__' },
+          { name: 'JISOO MV Streaming Loop', sub: '2 Hours', link: 'https://youtube.com/@sooyaaa__' },
+          { name: 'Behind The Scenes & Vlogs', sub: 'Exclusive Vlogs & Highlights', link: 'https://youtube.com/@sooyaaa__' }
         ]
       },
       {
+        category: 'stationhead',
+        shortTitle: 'Stationhead',
+        badge: 'Stationhead Guide',
+        driveId: '1ZZy_XeQ7ChIgB-ZnnFCJ0Us_lVhJ3Rn4',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1ZZy_XeQ7ChIgB-ZnnFCJ0Us_lVhJ3Rn4',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1ZZy_XeQ7ChIgB-ZnnFCJ0Us_lVhJ3Rn4&sz=w1000',
+        profileLink: 'https://www.stationhead.com/c/sooyas',
+        profileText: 'Official Stationhead Channel',
+        playlistHeader: 'STATIONHEAD CHANNELS',
+        icon: '<img src="https://play-lh.googleusercontent.com/GdyiyO_-mr36-5rjrI3DutdzR0OjJ_LoliCDlGPzTF2x2_cafbsms842SRtvWeKO2hRy68qfZe8ODV6vRjtBXQ=w480-h960-rw" alt="Stationhead" style="width: 22px; height: 22px; display: inline-block; vertical-align: middle; object-fit: contain; border-radius: 50%;">',
+        playlists: [
+          { name: 'jisoostreamingg Channel', sub: 'Live Radio • JISOO STREAM PARTY', link: 'https://www.stationhead.com/jisoostreamingg' }
+        ]
+      },
+      {
+        category: 'shazam',
+        shortTitle: 'Shazam',
+        badge: 'Shazam Guide',
+        driveId: '1XuPheRX9P3CCrL43_dsiQc8WA0a_MDL8',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1XuPheRX9P3CCrL43_dsiQc8WA0a_MDL8',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1XuPheRX9P3CCrL43_dsiQc8WA0a_MDL8&sz=w1000',
+        profileLink: 'https://www.shazam.com/artist/jisoo/1548008317',
+        profileText: 'Official Shazam Profile',
+        icon: '<img src="https://assets.shazam.com/website/images/favicons/apple-touch-icon" onerror="this.onerror=null; this.src=\'https://upload.wikimedia.org/wikipedia/commons/c/c2/Shazam_icon.svg\';" alt="Shazam" style="width: 22px; height: 22px; display: inline-block; vertical-align: middle; object-fit: contain; border-radius: 4px;">'
+      },
+      {
         category: 'buying',
-        shortTitle: 'Album & Billboard',
-        badge: 'Streaming & Billboard Buying Guide',
-        driveId: '1oYplPsbMk4aLEITaA-96yvYt0XGQU9p8',
-        imageUrl: 'https://lh3.googleusercontent.com/d/1oYplPsbMk4aLEITaA-96yvYt0XGQU9p8',
-        fallbackUrl: 'https://drive.google.com/thumbnail?id=1oYplPsbMk4aLEITaA-96yvYt0XGQU9p8&sz=w1000',
+        shortTitle: 'Buying',
+        badge: 'Digital & Physical Album Buying',
+        driveId: '1273ePqPLIvUfq5Qth04h7RXuAGuOGpVd',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1273ePqPLIvUfq5Qth04h7RXuAGuOGpVd',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1273ePqPLIvUfq5Qth04h7RXuAGuOGpVd&sz=w1000',
+        profileLink: 'https://jisoo.lnk.to/CLICK',
+        profileText: 'Buy Digital & Physical Albums',
+        playlistHeader: 'ALBUM PURCHASING',
+        icon: '<svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>',
+        playlists: [
+          { name: 'Official Store & Retailers', sub: 'Purchase digital downloads and physical versions.', link: 'https://jisoo.lnk.to/CLICK' }
+        ]
+      },
+      {
+        category: 'billboard',
+        shortTitle: 'Billboard',
+        badge: 'Billboard Charting Guide',
+        driveId: '1lq3CHsQljYZwPk18ivkeF2f69-Qc8i7a',
+        imageUrl: 'https://lh3.googleusercontent.com/d/1lq3CHsQljYZwPk18ivkeF2f69-Qc8i7a',
+        fallbackUrl: 'https://drive.google.com/thumbnail?id=1lq3CHsQljYZwPk18ivkeF2f69-Qc8i7a&sz=w1000',
         profileLink: 'https://www.billboard.com/artist/jisoo/',
         profileText: 'Official Billboard Artist Profile',
-        icon: '<svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 45 59"><path d="M25.1 12.3c10.5 0 18.3 7.8 18.3 18.6s-7.8 18.6-18.3 18.6c-5 0-9.8-2.5-12.2-6.8v6H0V0h13v20.4c2.4-5 7.1-8.1 12.1-8.1zm-1.8 24.3c3.6 0 5.9-2.3 5.9-6.7s-2.3-6.7-5.9-6.7-5.9 2.3-5.9 6.7 2.3 6.7 5.9 6.7z"/></svg>',
-        playlists: []
+        playlistHeader: 'BILLBOARD CHARTS',
+        icon: '<svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24"><path d="M4 19h4v-7H4v7zm6 0h4V5h-4v14zm6-11v11h4V8h-4z"/></svg>',
+        playlists: [
+          { name: 'Billboard Hot 100 & Global 200', sub: 'Track Jisoo\'s global chart performance.', link: 'https://www.billboard.com/artist/jisoo/' }
+        ]
       }
     ];
 
     const votingSlidesData = [
       {
-        badge: 'Voting Guide - Part 1',
+        title: 'Voting Guidelines 1',
         driveId: '1JxYppBx6HRzRiKUyTp2khNGI35Hlvc6s',
         imageUrl: 'https://lh3.googleusercontent.com/d/1JxYppBx6HRzRiKUyTp2khNGI35Hlvc6s',
         fallbackUrl: 'https://drive.google.com/thumbnail?id=1JxYppBx6HRzRiKUyTp2khNGI35Hlvc6s&sz=w1000'
       },
       {
-        badge: 'Voting Guide - Part 2',
+        title: 'Voting Guidelines 2',
         driveId: '16TzUy1uDkEI0EkE2Y0dFMibBHR3fJE8L',
         imageUrl: 'https://lh3.googleusercontent.com/d/16TzUy1uDkEI0EkE2Y0dFMibBHR3fJE8L',
         fallbackUrl: 'https://drive.google.com/thumbnail?id=16TzUy1uDkEI0EkE2Y0dFMibBHR3fJE8L&sz=w1000'
       }
     ];
 
-    let currentFilteredSlides = [...slidesData];
-    let currentIndex = 0;
-    let votingIndex = 0;
-    let votingAutoplayInterval = null;
-
-    function renderStoryProgress() {
-      const progressBar = document.getElementById('story-progress-bar');
-      
-      if (progressBar) {
-        progressBar.innerHTML = slidesData.map((_, i) => {
-          let statusClass = '';
-          if (i < currentIndex) statusClass = 'completed';
-          else if (i === currentIndex) statusClass = 'active';
-
-          return `
-            <div class="story-segment ${statusClass}" onclick="selectTile(${i})" title="Go to guide ${i + 1}">
-              <div class="story-segment-fill"></div>
-            </div>
-          `;
-        }).join('');
-      }
-    }
-
-    function selectTile(index) {
-      currentIndex = index;
-      renderSlide(currentIndex);
-    }
-
-    function nextStorySlide() {
-      if (currentIndex < slidesData.length - 1) {
-        currentIndex++;
-        renderSlide(currentIndex);
-      }
-    }
-
-    function prevStorySlide() {
-      if (currentIndex > 0) {
-        currentIndex--;
-        renderSlide(currentIndex);
-      }
-    }
+    let currentSlideIndex = 0;
+    let currentVotingIndex = 0;
 
     function renderSlide(index) {
-      if (!slidesData || slidesData.length === 0) return;
-      
+      currentSlideIndex = index;
       const slide = slidesData[index];
-      if (!slide) return;
+      const container = document.getElementById('slide-content');
+      if (!container) return;
 
-      const wrapper = document.getElementById('slide-content');
-      const fallback = slide.fallbackUrl || slide.imageUrl;
-      const rulesList = slide.rules && Array.isArray(slide.rules) ? slide.rules : [];
-      
-      wrapper.innerHTML = `
-        <div>
-          <div class="slide-header-meta">
-            <span class="slide-badge">${slide.badge || ''}</span>
-            <span style="font-size: 0.72rem; font-weight: 700; color: var(--accent-deep);">${index + 1} / ${slidesData.length}</span>
+      let progressSegmentsHtml = '<div class="story-progress-container">';
+      for (let i = 0; i < slidesData.length; i++) {
+        let statusClass = '';
+        if (i < index) statusClass = 'completed';
+        else if (i === index) statusClass = 'active';
+        progressSegmentsHtml += `
+          <div class="story-segment ${statusClass}" onclick="goToSlide(${i})" title="${slidesData[i].shortTitle}">
+            <div class="story-segment-fill"></div>
           </div>
-          
-          <div class="slide-image-container" style="position: relative;">
-            <img src="${slide.imageUrl}" 
-                 onerror="this.onerror=null; this.src='${fallback}';" 
-                 alt="${slide.title || 'Guide'}" 
-                 class="slide-img">
+        `;
+      }
+      progressSegmentsHtml += '</div>';
 
-            <!-- Story Quick Tap Navigation Overlay -->
-            <div style="position: absolute; top: 0; left: 0; width: 35%; height: 80%; cursor: pointer; z-index: 5;" onclick="event.stopPropagation(); prevStorySlide();" title="Previous Guide"></div>
-            <div style="position: absolute; top: 0; right: 0; width: 65%; height: 80%; cursor: pointer; z-index: 5;" onclick="event.stopPropagation(); nextStorySlide();" title="Next Guide"></div>
-
-            <span class="image-zoom-hint" onclick="event.stopPropagation(); openLightbox('${slide.imageUrl}', '${fallback}');">🔍 Tap image to enlarge</span>
-          </div>
-
-          <!-- Story-Style Segmented Progress Bar Below Guideline Image -->
-          <div class="story-progress-container" id="story-progress-bar" style="margin-top: 14px; margin-bottom: 16px;">
-            ${slidesData.map((_, i) => {
-              let statusClass = '';
-              if (i < index) statusClass = 'completed';
-              else if (i === index) statusClass = 'active';
-              return `
-                <div class="story-segment ${statusClass}" onclick="selectTile(${i})" title="Go to guide ${i + 1}">
-                  <div class="story-segment-fill"></div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-
-          ${slide.profileLink ? `
-            <div style="margin-top: 14px; margin-bottom: 16px;">
-              <a href="${slide.profileLink}" target="_blank" rel="noreferrer" class="btn" style="width: 100%; justify-content: center; gap: 8px;">
-                ${slide.icon || ''} ${slide.profileText || 'Official Platform Profile'}
-              </a>
-            </div>
-          ` : ''}
-
-          ${slide.playlists && slide.playlists.length > 0 ? `
-            <div style="margin-top: 16px; margin-bottom: 14px;">
-              <h3 style="font-family: 'Italiana', serif; font-size: 1.25rem; color: var(--text-main); margin-bottom: 12px; text-align: left;">✦ Curated ${slide.category ? slide.category.toUpperCase() : ''} Playlists</h3>
-              <div style="display: flex; flex-direction: column; gap: 10px;">
-                ${slide.playlists.map(pl => `
-                  <div style="background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(81, 61, 73, 0.15); border-radius: 14px; padding: 14px; text-align: left;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-                      <h4 style="font-family: 'Italiana', serif; font-size: 1.05rem; color: var(--text-main); font-weight: 600;">${pl.name}</h4>
-                      <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(81, 61, 73, 0.1); color: var(--accent-deep); padding: 2px 8px; border-radius: 8px;">${pl.badge}</span>
-                    </div>
-                    <p style="font-size: 0.78rem; color: var(--accent-deep); margin-bottom: 10px; line-height: 1.4;">${pl.desc}</p>
-                    <a href="${pl.link}" target="_blank" rel="noreferrer" class="btn" style="padding: 8px 14px; font-size: 0.78rem; width: 100%; justify-content: center;">
-                      ${slide.icon || ''} Open Playlist
-                    </a>
-                  </div>
-                `).join('')}
+      let playlistsHtml = '';
+      if (slide.playlists && slide.playlists.length > 0) {
+        playlistsHtml += `<p class="playlist-section-header">${slide.playlistHeader || 'PLAYLISTS'}</p>`;
+        slide.playlists.forEach(pl => {
+          playlistsHtml += `
+            <a href="${pl.link}" target="_blank" rel="noreferrer" class="playlist-card-tile">
+              <div class="playlist-tile-icon">
+                ${slide.icon}
               </div>
-            </div>
-          ` : ''}
+              <div class="playlist-tile-info">
+                <span class="playlist-tile-title">${pl.name}</span>
+                <span class="playlist-tile-sub">${pl.sub}</span>
+              </div>
+            </a>
+          `;
+        });
+      }
 
-          <h2 class="slide-heading">${slide.title || ''}</h2>
-          ${rulesList.length > 0 ? `
-            <ul class="slide-rules">
-              ${rulesList.map(r => `<li>${r}</li>`).join('')}
-            </ul>
-          ` : ''}
+      container.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <span class="slide-badge">${slide.badge}</span>
+          <span style="font-size: 0.75rem; font-weight: 600; color: var(--accent-deep);">${index + 1} / ${slidesData.length}</span>
         </div>
-        ${slide.note ? `<div class="slide-footer-note">${slide.note}</div>` : ''}
-      `;
 
-      // Update Segmented Progress Bar and Category Bar State
-      renderStoryProgress();
+        <div class="slide-image-container" onclick="openLightbox('${slide.imageUrl}')">
+          <img src="${slide.imageUrl}" onerror="this.onerror=null; this.src='${slide.fallbackUrl}';" alt="${slide.badge}" class="slide-img">
+        </div>
+
+        ${progressSegmentsHtml}
+
+        <a href="${slide.profileLink}" target="_blank" rel="noreferrer" class="btn" style="margin-bottom: 12px;">
+          ${slide.icon} ${slide.profileText}
+        </a>
+
+        ${playlistsHtml}
+      `;
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < slidesData.length) {
+        renderSlide(index);
+      }
+    }
+
+    function nextSlide() {
+      renderSlide((currentSlideIndex + 1) % slidesData.length);
+    }
+
+    function prevSlide() {
+      renderSlide((currentSlideIndex - 1 + slidesData.length) % slidesData.length);
     }
 
     function renderVotingSlide(index) {
-      if (!votingSlidesData || votingSlidesData.length === 0) return;
-      
+      currentVotingIndex = index;
       const slide = votingSlidesData[index];
-      if (!slide) return;
+      const container = document.getElementById('voting-slide-content');
+      if (!container) return;
 
-      const wrapper = document.getElementById('voting-slide-content');
-      if (!wrapper) return;
-
-      const fallback = slide.fallbackUrl || slide.imageUrl;
-      
-      wrapper.innerHTML = `
-        <div>
-          <div class="slide-header-meta">
-            <span class="slide-badge">${slide.badge || ''}</span>
-            <span style="font-size: 0.72rem; font-weight: 700; color: var(--accent-deep);">${index + 1} / ${votingSlidesData.length}</span>
+      let progressSegmentsHtml = '<div class="story-progress-container">';
+      for (let i = 0; i < votingSlidesData.length; i++) {
+        let statusClass = '';
+        if (i < index) statusClass = 'completed';
+        else if (i === index) statusClass = 'active';
+        progressSegmentsHtml += `
+          <div class="story-segment ${statusClass}" onclick="goToVotingSlide(${i})" title="${votingSlidesData[i].title}">
+            <div class="story-segment-fill"></div>
           </div>
-          
-          <div class="slide-image-container" style="position: relative;">
-            <img src="${slide.imageUrl}" 
-                 onerror="this.onerror=null; this.src='${fallback}';" 
-                 alt="Voting Guide" 
-                 class="slide-img">
+        `;
+      }
+      progressSegmentsHtml += '</div>';
 
-            <!-- Story Quick Tap Navigation Overlay -->
-            <div style="position: absolute; top: 0; left: 0; width: 35%; height: 80%; cursor: pointer; z-index: 5;" onclick="event.stopPropagation(); prevVotingSlide();" title="Previous Guide"></div>
-            <div style="position: absolute; top: 0; right: 0; width: 65%; height: 80%; cursor: pointer; z-index: 5;" onclick="event.stopPropagation(); nextVotingSlide();" title="Next Guide"></div>
-
-            <span class="image-zoom-hint" onclick="event.stopPropagation(); openLightbox('${slide.imageUrl}', '${fallback}');">🔍 Tap image to enlarge</span>
-          </div>
-
-          <!-- Story-Style Segmented Progress Bar Below Guideline Image -->
-          <div class="story-progress-container" style="margin-top: 14px; margin-bottom: 16px;">
-            ${votingSlidesData.map((_, i) => {
-              let statusClass = '';
-              if (i < index) statusClass = 'completed';
-              else if (i === index) statusClass = 'active';
-              return `
-                <div class="story-segment ${statusClass}" onclick="goToVotingSlide(${i})" title="Go to guide ${i + 1}">
-                  <div class="story-segment-fill"></div>
-                </div>
-              `;
-            }).join('')}
-          </div>
+      container.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <span class="slide-badge">Voting Guide</span>
+          <span style="font-size: 0.75rem; font-weight: 600; color: var(--accent-deep);">${index + 1} / ${votingSlidesData.length}</span>
         </div>
-      `;
 
-      // Update Counter
-      const counterEl = document.getElementById('voting-counter-text');
-      if (counterEl) counterEl.innerText = `${index + 1} / ${votingSlidesData.length}`;
+        <div class="slide-image-container" onclick="openLightbox('${slide.imageUrl}')">
+          <img src="${slide.imageUrl}" onerror="this.onerror=null; this.src='${slide.fallbackUrl}';" alt="${slide.title}" class="slide-img">
+        </div>
+
+        ${progressSegmentsHtml}
+      `;
     }
 
-    function openLightbox(imgSrc, fallbackSrc) {
+    function goToVotingSlide(index) {
+      if (index >= 0 && index < votingSlidesData.length) {
+        renderVotingSlide(index);
+      }
+    }
+
+    function nextVotingSlide() {
+      renderVotingSlide((currentVotingIndex + 1) % votingSlidesData.length);
+    }
+
+    function prevVotingSlide() {
+      renderVotingSlide((currentVotingIndex - 1 + votingSlidesData.length) % votingSlidesData.length);
+    }
+
+    function handleImageClick(e, totalCount, type) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      if (clickX > rect.width / 2) {
+        if (type === 'streaming') nextSlide();
+        else nextVotingSlide();
+      } else {
+        if (type === 'streaming') prevSlide();
+        else prevVotingSlide();
+      }
+    }
+
+    function openLightbox(src) {
       const modal = document.getElementById('lightbox-modal');
       const img = document.getElementById('lightbox-img');
-      img.onerror = function() {
-        if (fallbackSrc) {
-          this.onerror = null;
-          this.src = fallbackSrc;
-        }
-      };
-      img.src = imgSrc;
-      modal.classList.add('active');
+      if (modal && img) {
+        img.src = src;
+        modal.classList.add('active');
+      }
     }
 
     function closeLightbox() {
       const modal = document.getElementById('lightbox-modal');
-      modal.classList.remove('active');
-    }
-
-    function goToVotingSlide(index) {
-      votingIndex = index;
-      renderVotingSlide(votingIndex);
-    }
-
-    function nextVotingSlide() {
-      votingIndex = (votingIndex + 1) % votingSlidesData.length;
-      renderVotingSlide(votingIndex);
-    }
-
-    function prevVotingSlide() {
-      votingIndex = (votingIndex - 1 + votingSlidesData.length) % votingSlidesData.length;
-      renderVotingSlide(votingIndex);
-    }
-
-    function toggleVotingAutoplay() {
-      const btn = document.getElementById('voting-autoplay-toggle');
-      if (votingAutoplayInterval) {
-        clearInterval(votingAutoplayInterval);
-        votingAutoplayInterval = null;
-        btn.innerText = "▶ Auto-Play";
-        btn.style.background = "rgba(255, 255, 255, 0.8)";
-        btn.style.color = "var(--accent-deep)";
-      } else {
-        votingAutoplayInterval = setInterval(nextVotingSlide, 4500);
-        btn.innerText = "⏸ Pause";
-        btn.style.background = "var(--accent-deep)";
-        btn.style.color = "#ffffff";
+      if (modal) {
+        modal.classList.remove('active');
       }
-    }
-
-    // Keyboard navigation support for Voting Guidelines
-    document.addEventListener('keydown', (e) => {
-      const hash = window.location.hash;
-      if (hash === '#voting-guidelines') {
-        if (e.key === 'ArrowLeft') prevVotingSlide();
-        if (e.key === 'ArrowRight') nextVotingSlide();
-      }
-    });
-
-    // Touch Swipe Support for Voting Guidelines
-    let votingTouchStartX = 0;
-    let votingTouchEndX = 0;
-
-    const votingCard = document.getElementById('voting-slideshow-card');
-    if (votingCard) {
-      votingCard.addEventListener('touchstart', e => {
-        votingTouchStartX = e.changedTouches[0].screenX;
-      }, false);
-
-      votingCard.addEventListener('touchend', e => {
-        votingTouchEndX = e.changedTouches[0].screenX;
-        if (votingTouchEndX < votingTouchStartX - 40) nextVotingSlide();
-        if (votingTouchEndX > votingTouchStartX + 40) prevVotingSlide();
-      }, false);
     }
 
     function handleRoute() {
-      const hash = window.location.hash;
-      const homeCard = document.querySelector('main.card');
-      const guidelinesView = document.getElementById('guidelines-view');
-      const votingView = document.getElementById('voting-guidelines-view');
-      const jisooAppView = document.getElementById('jisoo-app-view');
-      const fanProjectsView = document.getElementById('fan-projects-view');
+      const hash = window.location.hash || '#home';
+      
+      document.getElementById('home-view').style.display = 'none';
+      document.getElementById('jisoo-app-view').style.display = 'none';
+      document.getElementById('guidelines-view').style.display = 'none';
+      document.getElementById('voting-guidelines-view').style.display = 'none';
+      document.getElementById('fan-projects-view').style.display = 'none';
 
-      if (homeCard) homeCard.style.display = 'none';
-      if (guidelinesView) guidelinesView.style.display = 'none';
-      if (votingView) votingView.style.display = 'none';
-      if (jisooAppView) jisooAppView.style.display = 'none';
-      if (fanProjectsView) fanProjectsView.style.display = 'none';
-
-      if (hash === '#guidelines') {
-        if (guidelinesView) guidelinesView.style.display = 'block';
-        renderSlide(currentIndex);
+      if (hash === '#jisoo-app') {
+        document.getElementById('jisoo-app-view').style.display = 'block';
+      } else if (hash === '#guidelines') {
+        document.getElementById('guidelines-view').style.display = 'block';
+        renderSlide(currentSlideIndex);
       } else if (hash === '#voting-guidelines') {
-        if (votingView) votingView.style.display = 'block';
-        renderVotingSlide(votingIndex);
-      } else if (hash === '#jisoo-app') {
-        if (jisooAppView) jisooAppView.style.display = 'block';
+        document.getElementById('voting-guidelines-view').style.display = 'block';
+        renderVotingSlide(currentVotingIndex);
       } else if (hash === '#fan-projects') {
-        if (fanProjectsView) fanProjectsView.style.display = 'block';
+        document.getElementById('fan-projects-view').style.display = 'block';
       } else {
-        if (homeCard) homeCard.style.display = 'block';
-        if (votingAutoplayInterval) {
-          clearInterval(votingAutoplayInterval);
-          votingAutoplayInterval = null;
-        }
+        document.getElementById('home-view').style.display = 'block';
       }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     window.addEventListener('hashchange', handleRoute);
 
-    // Initialize first slides and setup route on load
     window.onload = function() {
-      renderSlide(0);
-      renderVotingSlide(0);
       handleRoute();
+
+      // Keyboard navigation support
+      document.addEventListener('keydown', (e) => {
+        if (window.location.hash === '#guidelines') {
+          if (e.key === 'ArrowRight') nextSlide();
+          if (e.key === 'ArrowLeft') prevSlide();
+        } else if (window.location.hash === '#voting-guidelines') {
+          if (e.key === 'ArrowRight') nextVotingSlide();
+          if (e.key === 'ArrowLeft') prevVotingSlide();
+        }
+      });
     };
   </script>
 </body>
