@@ -115,7 +115,7 @@
 
     // Static Immutable Fanbase Dataset
     const DATASET = Object.freeze({
-      avatarId: '1cTobQIxQd3-aJYRUCwTBbdZ5NEiYPItk',
+      avatarId: '12kKlAy-xvAcYaVwYVXWFyCIHNoFq1_YX',
       heroDetails: {
         title: 'JISOO',
         subtitle: 'JISOO SOLO COMEBACK',
@@ -431,7 +431,7 @@
       },
       {
         id: 'sa',
-        country: 'Saudi Arabia / Arab',
+        country: 'Saudi Arabia / Arab Region',
         accounts: [
           { handle: '@JisoonewsAR', url: 'https://x.com/JisoonewsAR' }
         ]
@@ -586,14 +586,14 @@
           {/* VIEW 1: HOME PORTAL */}
           {currentView === 'home' && (
             <main className="w-full bg-white/85 backdrop-blur-xl border border-white/60 rounded-3xl p-8 sm:p-10 text-center shadow-2xl shadow-[#513D49]/20 transition-all duration-300 animate-fade-in">
-              <div className="relative w-28 h-28 mx-auto mb-5">
+              <div className="relative w-28 h-28 mx-auto mb-5 rounded-full overflow-hidden shadow-lg shadow-[#513D49]/25 border-4 border-white">
                 <img
                   src={getLh3Url(DATASET.avatarId)}
                   onError={(e) => {
                     e.currentTarget.src = getDriveThumb(DATASET.avatarId, 400);
                   }}
                   alt="Kim Jisoo"
-                  className="w-full h-full rounded-full border-4 border-white object-cover object-[center_25%] shadow-lg shadow-[#513D49]/25 pointer-events-none"
+                  className="w-full h-full object-cover object-center pointer-events-none"
                 />
               </div>
 
@@ -653,8 +653,11 @@
                 <div className="w-20 h-20 mx-auto mb-4 rounded-2xl overflow-hidden shadow-lg border-2 border-white">
                   <img
                     src={getLh3Url(DATASET.avatarId)}
+                    onError={(e) => {
+                      e.currentTarget.src = getDriveThumb(DATASET.avatarId, 400);
+                    }}
                     alt="JISOO App"
-                    className="w-full h-full object-cover pointer-events-none"
+                    className="w-full h-full object-cover object-center pointer-events-none"
                   />
                 </div>
                 <h2 className="font-serif text-2xl text-[#2b1f26] mb-2">Official JISOO App</h2>
@@ -910,7 +913,7 @@
                 >
                   ← Back
                 </button>
-                <span className="font-serif text-lg tracking-wider text-[#2b1f26]">LOCAL BASES</span>
+                <span className="font-serif text-lg tracking-wider text-[#2b1f26]">LOCAL FANBASES</span>
               </header>
 
               <div className="text-center mb-6">
@@ -953,14 +956,9 @@
                             className="hover:bg-[#B0989F]/10 transition-colors"
                           >
                             <td className="py-3.5 px-4 align-middle">
-                              <div className="flex items-center gap-2">
-                                <span className="text-xl sm:text-2xl leading-none flex-shrink-0">
-                                  {base.flag}
-                                </span>
-                                <span className="font-semibold text-xs sm:text-sm text-[#2b1f26]">
-                                  {base.country}
-                                </span>
-                              </div>
+                              <span className="font-semibold text-xs sm:text-sm text-[#2b1f26]">
+                                {base.country}
+                              </span>
                             </td>
                             <td className="py-3.5 px-4 align-middle">
                               <div className="flex flex-wrap gap-1.5 sm:gap-2">
