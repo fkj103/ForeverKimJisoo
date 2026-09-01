@@ -6,7 +6,7 @@
   <title>ForeverKimJisoo — Fanbase Portal</title>
   
   <!-- SEO, Social Graph & Security Metadata -->
-  <meta name="description" content="Official ForeverKimJisoo Fanbase Portal. Complete guides for streaming, buying, voting, app downloads, and solo comeback projects for JISOO.">
+  <meta name="description" content="Official ForeverKimJisoo Fanbase Portal. Complete guides for streaming, buying, voting, app downloads, solo comeback projects, and global fanbase directory for JISOO.">
   <meta name="theme-color" content="#513D49">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -74,6 +74,13 @@
     .animate-fade-in {
       animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 <body class="min-h-screen relative flex flex-col items-center justify-center p-4 sm:p-6 overflow-x-hidden">
@@ -123,6 +130,7 @@
         { id: 'guidelines', title: 'Streaming & Buying Guidelines', url: '#guidelines', external: false, view: 'guidelines' },
         { id: 'voting', title: 'Voting Guidelines', url: '#voting-guidelines', external: false, view: 'voting' },
         { id: 'projects', title: 'Comeback Support & Fan Projects', url: '#fan-projects', external: false, view: 'projects' },
+        { id: 'fanbases', title: 'Local Fanbases', url: '#local-fanbases', external: false, view: 'fanbases' },
       ],
       appStores: [
         {
@@ -225,8 +233,9 @@
     const STREAMING_GUIDES = Object.freeze([
       {
         id: 'spotify',
+        shortName: 'Spotify',
         badge: 'Spotify Streaming Guide',
-        imageId: '1dDr1n5OjW29ZoRb-WDW4idtWLCc5US5K',
+        imageId: '1ejmCAWI0nNciTuKtynnno2Qs9KXJA8T1',
         profileUrl: 'https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs',
         profileLabel: 'Official Spotify Profile',
         playlistHeader: 'SPOTIFY PLAYLISTS',
@@ -243,8 +252,9 @@
       },
       {
         id: 'apple',
+        shortName: 'Apple Music',
         badge: 'Apple Music Guide',
-        imageId: '1rr6Tqx8tmtY1ejon2pJMk66Mf70S5m5I',
+        imageId: '1jjSOHVVaMItkXdOPhRNz1IgwMN3T9ztj',
         profileUrl: 'https://music.apple.com/artist/jisoo/1548008317',
         profileLabel: 'Official Apple Music Profile',
         playlistHeader: 'APPLE MUSIC PLAYLISTS',
@@ -261,6 +271,7 @@
       },
       {
         id: 'youtube',
+        shortName: 'YouTube',
         badge: 'YouTube & MV Guide',
         imageId: '1J4SOBjz5OLRd0wy9JAEsddYxFW5oohFB',
         profileUrl: 'https://youtube.com/@sooyaaa__?si=ZUZNQjaSD4wMoj5b',
@@ -279,6 +290,7 @@
       },
       {
         id: 'stationhead',
+        shortName: 'Stationhead',
         badge: 'Stationhead Guide',
         imageId: '1ZZy_XeQ7ChIgB-ZnnFCJ0Us_lVhJ3Rn4',
         profileUrl: 'https://stationhead.com/sooyaaahq',
@@ -297,6 +309,7 @@
       },
       {
         id: 'shazam',
+        shortName: 'Shazam',
         badge: 'Shazam Guide',
         imageId: '1XuPheRX9P3CCrL43_dsiQc8WA0a_MDL8',
         profileUrl: 'https://www.shazam.com/artist/jisoo/1548008317',
@@ -312,6 +325,7 @@
       },
       {
         id: 'billboard',
+        shortName: 'Billboard',
         badge: 'Billboard Charting Guide',
         imageId: '1lq3CHsQljYZwPk18ivkeF2f69-Qc8i7a',
         profileUrl: 'https://www.billboard.com/artist/jisoo/',
@@ -327,6 +341,7 @@
       },
       {
         id: 'buying',
+        shortName: 'Buying',
         badge: 'Digital & Physical Album Buying',
         imageId: '1FUi-qvSo7sbobqW8lQzs1abbTErJIalx',
         profileUrl: 'https://jisoo.lnk.to/CLICK',
@@ -353,12 +368,111 @@
       }
     ]);
 
+    // Local & Regional Fanbases Directory
+    const LOCAL_FANBASES = Object.freeze([
+      {
+        id: 'us',
+        country: 'United States',
+        accounts: [
+          { handle: '@USBU4WAYS', url: 'https://x.com/USBU4WAYS' },
+          { handle: '@ForeverKimJisoo', url: 'https://x.com/ForeverKimJisoo' }
+        ]
+      },
+      {
+        id: 'in',
+        country: 'India',
+        accounts: [
+          { handle: '@KIMJISOOINDIA', url: 'https://x.com/KIMJISOOINDIA' }
+        ]
+      },
+      {
+        id: 'co',
+        country: 'Colombia',
+        accounts: [
+          { handle: '@JISOOCOLOMBIA', url: 'https://x.com/JISOOCOLOMBIA' }
+        ]
+      },
+      {
+        id: 'th',
+        country: 'Thailand',
+        accounts: [
+          { handle: '@JisooRamyeonTH', url: 'https://x.com/JisooRamyeonTH' }
+        ]
+      },
+      {
+        id: 'br',
+        country: 'Brazil',
+        accounts: [
+          { handle: '@updatekimjisoo', url: 'https://x.com/updatekimjisoo' },
+          { handle: '@PortalJisoo_', url: 'https://x.com/PortalJisoo_' }
+        ]
+      },
+      {
+        id: 'mx',
+        country: 'Mexico',
+        accounts: [
+          { handle: '@JisooInfo', url: 'https://x.com/JisooInfo' },
+          { handle: '@JISOOBPMEXICO', url: 'https://x.com/JISOOBPMEXICO' }
+        ]
+      },
+      {
+        id: 'id',
+        country: 'Indonesia',
+        accounts: [
+          { handle: '@JISOOID_UNION', url: 'https://x.com/JISOOID_UNION' }
+        ]
+      },
+      {
+        id: 'ar',
+        country: 'Argentina',
+        accounts: [
+          { handle: '@Jisoogalleryarg', url: 'https://x.com/Jisoogalleryarg' }
+        ]
+      },
+      {
+        id: 'sa',
+        country: 'Saudi Arabia / Arab',
+        accounts: [
+          { handle: '@JisoonewsAR', url: 'https://x.com/JisoonewsAR' }
+        ]
+      },
+      {
+        id: 'fr',
+        country: 'France',
+        accounts: [
+          { handle: '@teamJisooFR', url: 'https://x.com/teamJisooFR' }
+        ]
+      },
+      {
+        id: 'de',
+        country: 'Germany',
+        accounts: [
+          { handle: '@Jisoogermany', url: 'https://x.com/Jisoogermany' }
+        ]
+      },
+      {
+        id: 'tr',
+        country: 'Turkey',
+        accounts: [
+          { handle: '@JISOOTURKIYE', url: 'https://x.com/JISOOTURKIYE' }
+        ]
+      },
+      {
+        id: 'ph',
+        country: 'Philippines',
+        accounts: [
+          { handle: '@ForeverKimJisoo', url: 'https://x.com/ForeverKimJisoo' }
+        ]
+      }
+    ]);
+
     function App() {
       const [currentView, setCurrentView] = useState('home');
       const [streamingSlideIndex, setStreamingSlideIndex] = useState(0);
       const [votingSlideIndex, setVotingSlideIndex] = useState(0);
       const [lightboxImage, setLightboxImage] = useState(null);
       const [toastMessage, setToastMessage] = useState('');
+      const [fanbaseSearch, setFanbaseSearch] = useState('');
 
       // Toast notification trigger
       const triggerToast = useCallback((message) => {
@@ -422,11 +536,12 @@
       useEffect(() => {
         const handleHashChange = () => {
           const hash = window.location.hash.replace('#', '');
-          if (['home', 'app', 'jisoo-app', 'guidelines', 'voting', 'voting-guidelines', 'projects', 'fan-projects'].includes(hash)) {
+          if (['home', 'app', 'jisoo-app', 'guidelines', 'voting', 'voting-guidelines', 'projects', 'fan-projects', 'fanbases', 'local-fanbases'].includes(hash)) {
             if (hash === 'app' || hash === 'jisoo-app') setCurrentView('app');
             else if (hash === 'guidelines') setCurrentView('guidelines');
             else if (hash === 'voting' || hash === 'voting-guidelines') setCurrentView('voting');
             else if (hash === 'projects' || hash === 'fan-projects') setCurrentView('projects');
+            else if (hash === 'fanbases' || hash === 'local-fanbases') setCurrentView('fanbases');
             else setCurrentView('home');
           } else {
             setCurrentView('home');
@@ -448,6 +563,16 @@
 
       const currentStreamingSlide = useMemo(() => STREAMING_GUIDES[streamingSlideIndex], [streamingSlideIndex]);
       const currentVotingSlide = useMemo(() => VOTING_GUIDES[votingSlideIndex], [votingSlideIndex]);
+
+      // Filtered local fanbases based on search query
+      const filteredFanbases = useMemo(() => {
+        const q = fanbaseSearch.trim().toLowerCase();
+        if (!q) return LOCAL_FANBASES;
+        return LOCAL_FANBASES.filter(item => 
+          item.country.toLowerCase().includes(q) ||
+          item.accounts.some(acc => acc.handle.toLowerCase().includes(q))
+        );
+      }, [fanbaseSearch]);
 
       return (
         <div className="w-full flex flex-col gap-5 select-none">
@@ -511,7 +636,6 @@
             </main>
           )}
 
-          {}
           {/* VIEW 2: OFFICIAL APP PAGE */}
           {currentView === 'app' && (
             <main className="w-full bg-white/85 backdrop-blur-xl border border-white/60 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-[#513D49]/20 transition-all duration-300 animate-fade-in">
@@ -556,7 +680,6 @@
             </main>
           )}
 
-          {}
           {/* VIEW 3: STREAMING & BUYING GUIDELINES */}
           {currentView === 'guidelines' && (
             <main className="w-full bg-white/85 backdrop-blur-xl border border-white/60 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-[#513D49]/20 transition-all duration-300 animate-fade-in">
@@ -569,6 +692,23 @@
                 </button>
                 <span className="font-serif text-lg tracking-wider text-[#2b1f26]">STREAMING GUIDELINES</span>
               </header>
+
+              {/* Platform Selector Buttons Above Slider */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-3 no-scrollbar">
+                {STREAMING_GUIDES.map((slide, idx) => (
+                  <button
+                    key={slide.id}
+                    onClick={() => setStreamingSlideIndex(idx)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                      idx === streamingSlideIndex
+                        ? 'bg-[#513D49] text-white shadow-sm'
+                        : 'bg-[#B0989F]/40 hover:bg-[#B0989F] text-[#2b1f26]'
+                    }`}
+                  >
+                    {slide.shortName || slide.badge}
+                  </button>
+                ))}
+              </div>
 
               <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-[#513D49]/10">
                 <div className="mb-3 flex items-center justify-between">
@@ -591,7 +731,7 @@
                   />
                 </div>
 
-                {/* Segmented Story Progress Bar (Without count label) */}
+                {/* Segmented Story Progress Bar */}
                 <div className="flex gap-1.5 w-full mb-4">
                   {STREAMING_GUIDES.map((slide, idx) => (
                     <button
@@ -653,7 +793,6 @@
             </main>
           )}
 
-          {}
           {/* VIEW 4: VOTING GUIDELINES */}
           {currentView === 'voting' && (
             <main className="w-full bg-white/85 backdrop-blur-xl border border-white/60 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-[#513D49]/20 transition-all duration-300 animate-fade-in">
@@ -688,7 +827,7 @@
                   />
                 </div>
 
-                {/* Segmented Story Progress Bar (Without count label) */}
+                {/* Segmented Story Progress Bar */}
                 <div className="flex gap-1.5 w-full">
                   {VOTING_GUIDES.map((slide, idx) => (
                     <button
@@ -761,7 +900,102 @@
             </main>
           )}
 
-          {}
+          {/* VIEW 6: LOCAL & REGIONAL FANBASES DIRECTORY */}
+          {currentView === 'fanbases' && (
+            <main className="w-full bg-white/85 backdrop-blur-xl border border-white/60 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-[#513D49]/20 transition-all duration-300 animate-fade-in">
+              <header className="flex items-center justify-between pb-4 mb-4 border-b border-[#513D49]/15">
+                <button
+                  onClick={() => navigateTo('home')}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#513D49] bg-white/85 hover:bg-[#513D49] hover:text-white border border-[#513D49]/20 px-3.5 py-2 rounded-xl transition-all duration-200 cursor-pointer"
+                >
+                  ← Back
+                </button>
+                <span className="font-serif text-lg tracking-wider text-[#2b1f26]">LOCAL BASES</span>
+              </header>
+
+              <div className="text-center mb-6">
+                <h2 className="font-serif text-2xl text-[#2b1f26] mb-1.5">Global & Regional Fanbases</h2>
+                <p className="text-xs sm:text-sm text-[#513D49] max-w-md mx-auto leading-relaxed">
+                  Connect with localized fanbase teams around the world for regional group orders, streaming events, and comeback support!
+                </p>
+              </div>
+
+              {/* Search / Filter Box */}
+              <div className="mb-4">
+                <input
+                  type="text"
+                  placeholder="Search by country or handle..."
+                  value={fanbaseSearch}
+                  onChange={(e) => setFanbaseSearch(e.target.value)}
+                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm bg-white/90 border border-[#513D49]/20 text-[#2b1f26] placeholder-[#513D49]/60 focus:outline-none focus:ring-2 focus:ring-[#513D49]/30 transition-all"
+                />
+              </div>
+
+              {/* Styled Table Container */}
+              <div className="overflow-hidden rounded-2xl border border-[#513D49]/15 bg-white shadow-sm">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-[#B0989F]/30 border-b border-[#513D49]/15 text-[#513D49]">
+                        <th className="py-3 px-4 text-[11px] font-extrabold uppercase tracking-wider w-5/12 sm:w-1/3">
+                          Region / Country
+                        </th>
+                        <th className="py-3 px-4 text-[11px] font-extrabold uppercase tracking-wider w-7/12 sm:w-2/3">
+                          Official Accounts
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#513D49]/10">
+                      {filteredFanbases.length > 0 ? (
+                        filteredFanbases.map((base) => (
+                          <tr 
+                            key={base.id} 
+                            className="hover:bg-[#B0989F]/10 transition-colors"
+                          >
+                            <td className="py-3.5 px-4 align-middle">
+                              <div className="flex items-center gap-2">
+                                <span className="text-xl sm:text-2xl leading-none flex-shrink-0">
+                                  {base.flag}
+                                </span>
+                                <span className="font-semibold text-xs sm:text-sm text-[#2b1f26]">
+                                  {base.country}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="py-3.5 px-4 align-middle">
+                              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                                {base.accounts.map((acc, aIdx) => (
+                                  <a
+                                    key={aIdx}
+                                    href={sanitizeUrl(acc.url)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#B0989F]/35 hover:bg-[#513D49] text-[#2b1f26] hover:text-white text-xs font-semibold tracking-tight transition-all duration-150 transform hover:-translate-y-0.5 shadow-sm"
+                                  >
+                                    <svg className="w-3 h-3 fill-current opacity-80" viewBox="0 0 24 24">
+                                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                    </svg>
+                                    <span>{acc.handle}</span>
+                                  </a>
+                                ))}
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="2" className="py-8 text-center text-xs text-[#513D49]/70 font-medium">
+                            No matching fanbases found.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </main>
+          )}
+
           {/* COMMUNITY FOOTER */}
           <footer className="w-full bg-white/85 backdrop-blur-xl border border-white/60 rounded-3xl p-5 text-center shadow-lg shadow-[#513D49]/15">
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#513D49] mb-3 opacity-90">
