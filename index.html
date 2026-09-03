@@ -283,7 +283,7 @@
           </svg>
         ),
         playlists: [
-          { name: 'Official Music Video', sub: 'CLICK Official Music Video', url: 'https://youtube.com/@sooyaaa__' },
+          { name: 'Official Music Video', sub: 'CLICK Official Music Video', url: 'https://www.youtube.com/watch?v=sf02ugzPFE4' },
           { name: 'CLICK ㅣ SINGLE', url: 'https://youtube.com/playlist?list=PLQMGiNDCxWd0&si=fMzeNj0pAaTjPED1' }
         ]
       },
@@ -369,9 +369,33 @@
 
     const GOALS_SLIDES = Object.freeze([
       {
-        id: 'goals-1',
-        badge: 'Comeback Goals',
-        imageId: '1t3W6ferXDAoD_GkBVse3_nLL6gY0oDMa'
+        id: 'poster',
+        shortName: 'Poster',
+        imageId: '1t3W6ferXDAoD_GkBVse3_nLL6gY0oDMa', // You can replace this with the full poster image ID later
+      },
+      {
+        id: 'spotify',
+        shortName: 'Spotify',
+        targets: [
+          { period: '1ST DAY', items: ['Primary: 2 MILLION Streams', 'Secondary: 2.5 MILLION Streams'] },
+          { period: '1ST WEEK', items: ['10 MILLION Streams'] }
+        ]
+      },
+      {
+        id: 'apple',
+        shortName: 'Apple & iTunes',
+        targets: [
+          { period: 'APPLE MUSIC', items: ['Chart Entry'] },
+          { period: '1ST DAY iTUNES', items: ['20 Countries #1s'] }
+        ]
+      },
+      {
+        id: 'youtube',
+        shortName: 'YouTube',
+        targets: [
+          { period: '1ST DAY', items: ['Primary: 5 MILLION Views', 'Secondary: 8 MILLION Views'] },
+          { period: '1ST WEEK', items: ['15 MILLION Views'] }
+        ]
       }
     ]);
 
@@ -887,13 +911,24 @@
                 <span className="font-serif text-lg tracking-wider text-[#2b1f26]">COMEBACK GOALS</span>
               </header>
 
-              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-[#513D49]/10">
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider bg-[#513D49]/10 text-[#513D49] py-1 px-3 rounded-lg">
-                    {currentGoalsSlide.badge}
-                  </span>
-                </div>
+              {/* Platform Selector Buttons Above Slider */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-2 mb-3 no-scrollbar">
+                {GOALS_SLIDES.map((slide, idx) => (
+                  <button
+                    key={slide.id}
+                    onClick={() => setGoalsSlideIndex(idx)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                      idx === goalsSlideIndex
+                        ? 'bg-[#513D49] text-white shadow-sm'
+                        : 'bg-[#B0989F]/40 hover:bg-[#B0989F] text-[#2b1f26]'
+                    }`}
+                  >
+                    {slide.shortName}
+                  </button>
+                ))}
+              </div>
 
+              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-[#513D49]/10">
                 <div 
                   className="relative rounded-xl overflow-hidden bg-[#f3eff1] mb-2 cursor-zoom-in group shadow-inner border border-[#513D49]/10"
                   onClick={() => setLightboxImage(getLh3Url(currentGoalsSlide.imageId))}
@@ -903,19 +938,19 @@
                     onError={(e) => {
                       e.currentTarget.src = getDriveThumb(currentGoalsSlide.imageId, 1200);
                     }}
-                    alt={currentGoalsSlide.badge}
+                    alt={currentGoalsSlide.shortName}
                     className="w-full max-h-[550px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.01] pointer-events-none"
                   />
                 </div>
 
                 {/* Segmented Story Progress Bar (Enabled for multi-slide expansion) */}
                 {GOALS_SLIDES.length > 1 && (
-                  <div className="flex gap-1.5 w-full">
+                  <div className="flex gap-1.5 w-full mb-4">
                     {GOALS_SLIDES.map((slide, idx) => (
                       <button
                         key={slide.id}
                         onClick={() => setGoalsSlideIndex(idx)}
-                        title={slide.badge}
+                        title={slide.shortName}
                         className="flex-1 h-1.5 rounded-full overflow-hidden transition-all bg-[#513D49]/20 hover:bg-[#513D49]/40 cursor-pointer"
                       >
                         <div 
@@ -925,6 +960,32 @@
                         />
                       </button>
                     ))}
+                  </div>
+                )}
+
+                {/* Target Goals Text Data */}
+                {currentGoalsSlide.targets && currentGoalsSlide.targets.length > 0 && (
+                  <div className="mt-2 pt-3 border-t border-[#513D49]/10 text-left">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#513D49] mb-3">
+                      TARGETS
+                    </p>
+                    <div className="flex flex-col gap-2.5">
+                      {currentGoalsSlide.targets.map((targetGrp, tIdx) => (
+                        <div key={tIdx} className="p-3.5 rounded-xl bg-[#B0989F]/15 border border-[#513D49]/10">
+                          <span className="block text-[10px] font-extrabold uppercase tracking-widest text-[#513D49] mb-1.5">
+                            {targetGrp.period}
+                          </span>
+                          <ul className="flex flex-col gap-1">
+                            {targetGrp.items.map((item, iIdx) => (
+                              <li key={iIdx} className="text-xs sm:text-sm font-semibold text-[#2b1f26] flex items-start gap-2">
+                                <span className="text-[#513D49] mt-[2px] opacity-80 text-[10px]"></span>
+                                <span className="leading-snug">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
