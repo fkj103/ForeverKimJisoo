@@ -223,8 +223,8 @@
           id: 'mass-streaming',
           category: 'Streaming',
           status: '✦ Ongoing',
-          title: 'Mass Streaming Parties',
-          description: 'Join scheduled global streaming parties and boost MV view targets across all digital platforms.',
+          title: 'Streaming Party',
+          description: 'Join global streaming parties and boost stream targets across all digital platforms.',
           actionLabel: '✦ Join Now',
           url: 'https://www.stationhead.com/jisoostreamingg'
         },
@@ -232,10 +232,11 @@
           id: 'hashtag-tagging',
           category: 'Social Media',
           status: '✦ Starting Soon',
-          title: 'Hashtag Tagging',
-          description: 'Trend official comeback taglines across social platforms to maximize global reach and visibility for Jisoo.',
+          title: 'Hashtag Party',
+          description: 'Trend official comeback taglines on X to maximize global reach and visibility for Jisoo.',
           actionLabel: '✦ View Tags & Schedule',
-          url: 'https://x.com/ForeverKimJisoo'
+          url: 'https://x.com/ForeverKimJisoo',
+          imageId: '1E1UuzS4owlXdSIBdzBG93_0F7D1ImYzg'
         }
       ]
     });
@@ -1042,14 +1043,42 @@
                     <p className="text-xs text-[#513D49] leading-relaxed mb-4">
                       {proj.description}
                     </p>
-                    <a
-                      href={sanitizeUrl(proj.url)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl bg-[#B0989F] hover:bg-[#513D49] text-[#2b1f26] hover:text-white text-xs font-bold transition-all duration-200 shadow-sm"
-                    >
-                      <span>{proj.actionLabel}</span>
-                    </a>
+                    
+                    {}
+                    {proj.imageId && (
+                      <div className="rounded-xl overflow-hidden border border-[#513D49]/10 mt-2 mb-2 shadow-sm">
+                        <img 
+                          src={getLh3Url(proj.imageId)} 
+                          onError={(e) => { e.currentTarget.src = getDriveThumb(proj.imageId, 800); }} 
+                          alt={proj.title} 
+                          className="w-full h-auto object-contain pointer-events-none" 
+                        />
+                      </div>
+                    )}
+
+                    {proj.id !== 'hashtag-tagging' && (
+                      <a
+                        href={sanitizeUrl(proj.url)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl bg-[#B0989F] hover:bg-[#513D49] text-[#2b1f26] hover:text-white text-xs font-bold transition-all duration-200 shadow-sm"
+                      >
+                        <span>{proj.actionLabel}</span>
+                      </a>
+                    )}
+                    
+                    {/* TEMPORARILY COMMENTED OUT FOR HASHTAG PARTY
+                    {proj.id === 'hashtag-tagging' && (
+                      <a
+                        href={sanitizeUrl(proj.url)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl bg-[#B0989F] hover:bg-[#513D49] text-[#2b1f26] hover:text-white text-xs font-bold transition-all duration-200 shadow-sm"
+                      >
+                        <span>{proj.actionLabel}</span>
+                      </a>
+                    )}
+                    */}
                   </div>
                 ))}
               </div>
