@@ -124,13 +124,14 @@
       },
       homeLinks: [
         { id: 'presave', title: '✦ Pre-Save and Pre-Order Links', url: 'https://jisoo.lnk.to/CLICK', external: true },
-        { id: 'website', title: 'Jisoo Official Website', url: 'https://jisoo.io', external: true },
-        { id: 'app', title: 'Jisoo App', url: '#jisoo-app', external: false, view: 'app' },
-        { id: 'blissoo', title: 'BLISSOO Official Website', url: 'https://blissoo.co.kr', external: true },
+        { id: 'goals', title: 'Goals', url: '#goals', external: false, view: 'goals' },
         { id: 'guidelines', title: 'Streaming & Buying Guidelines', url: '#guidelines', external: false, view: 'guidelines' },
         { id: 'voting', title: 'Voting Guidelines', url: '#voting-guidelines', external: false, view: 'voting' },
         { id: 'projects', title: 'Comeback Support & Fan Projects', url: '#fan-projects', external: false, view: 'projects' },
         { id: 'fanbases', title: 'Local Fanbases', url: '#local-fanbases', external: false, view: 'fanbases' },
+        { id: 'website', title: 'Jisoo Official Website', url: 'https://jisoo.io', external: true },
+        { id: 'app', title: 'Jisoo App', url: '#jisoo-app', external: false, view: 'app' },
+        { id: 'blissoo', title: 'BLISSOO Official Website', url: 'https://blissoo.co.kr', external: true },
       ],
       appStores: [
         {
@@ -245,9 +246,10 @@
           </svg>
         ),
         playlists: [
-          { name: 'This Is JISOO', sub: 'Official Playlist • 3 Hours', url: 'https://open.spotify.com/playlist/37i9dQZF1DZ06evO0bOa2I' },
-          { name: 'JISOO Comeback Focus Loop', sub: '4 Hours', url: 'https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs' },
-          { name: 'JISOO Complete Discography', sub: '6 Hours', url: 'https://open.spotify.com/artist/6UZ0ba50XreR4TM8u322gs' }
+          { name: 'This Is JISOO', sub: 'Official Playlist', url: 'https://open.spotify.com/playlist/37i9dQZF1DZ06evO0bOa2I' },
+          { name: 'FKJ CLICK Focus 1', url: 'https://open.spotify.com/playlist/4nK0grGnzRnU5oAWKByxvn?si=5u-mnA7uRMauXw6bJl1OnQ' },
+          { name: 'FKJ CLICK Focus 2', url: 'https://open.spotify.com/playlist/509ImNClEQD9HwmymrDtn6?si=1u4e6vbcT8uMw4S6f3VRdA' },
+          { name: 'FKJ CLICK Focus 3', url: 'https://open.spotify.com/playlist/5cTsGjNS2DYflblX8eDsJ7?si=pLP1i6cJQC2O7w2aRPx84A' }
         ]
       },
       {
@@ -264,9 +266,7 @@
           </svg>
         ),
         playlists: [
-          { name: 'JISOO Essentials', sub: 'Official Essentials • 3 Hours', url: 'https://music.apple.com/artist/jisoo/1548008317' },
-          { name: 'JISOO Artist Station', sub: 'Non-stop Radio Station', url: 'https://music.apple.com/artist/jisoo/1548008317' },
-          { name: 'JISOO Comeback Focus', sub: '4 Hours', url: 'https://music.apple.com/artist/jisoo/1548008317' }
+          { name: 'JISOO Essentials', sub: 'Official Essentials • 3 Hours', url: 'https://music.apple.com/artist/jisoo/1548008317' }
         ]
       },
       {
@@ -283,9 +283,8 @@
           </svg>
         ),
         playlists: [
-          { name: 'Official Music Videos', sub: 'Official Channel MVs & Teasers', url: 'https://youtube.com/@sooyaaa__' },
-          { name: 'JISOO MV Streaming Loop', sub: '2 Hours', url: 'https://youtube.com/@sooyaaa__' },
-          { name: 'Behind The Scenes & Vlogs', sub: 'Exclusive Vlogs & Highlights', url: 'https://youtube.com/@sooyaaa__' }
+          { name: 'Official Music Video', sub: 'CLICK Official Music Video', url: 'https://youtube.com/@sooyaaa__' },
+          { name: 'CLICK ㅣ SINGLE', url: 'https://youtube.com/playlist?list=PLQMGiNDCxWd0&si=fMzeNj0pAaTjPED1' }
         ]
       },
       {
@@ -365,6 +364,14 @@
         id: 'voting-2',
         badge: 'Voting Guide',
         imageId: '16TzUy1uDkEI0EkE2Y0dFMibBHR3fJE8L'
+      }
+    ]);
+
+    const GOALS_SLIDES = Object.freeze([
+      {
+        id: 'goals-1',
+        badge: 'Comeback Goals Poster',
+        imageId: '1t3W6ferXDAoD_GkBVse3_nLL6gY0oDMa'
       }
     ]);
 
@@ -470,6 +477,7 @@
       const [currentView, setCurrentView] = useState('home');
       const [streamingSlideIndex, setStreamingSlideIndex] = useState(0);
       const [votingSlideIndex, setVotingSlideIndex] = useState(0);
+      const [goalsSlideIndex, setGoalsSlideIndex] = useState(0);
       const [lightboxImage, setLightboxImage] = useState(null);
       const [toastMessage, setToastMessage] = useState('');
       const [fanbaseSearch, setFanbaseSearch] = useState('');
@@ -514,6 +522,9 @@
           } else if (currentView === 'voting') {
             if (e.key === 'ArrowRight') setVotingSlideIndex((prev) => (prev + 1) % VOTING_GUIDES.length);
             if (e.key === 'ArrowLeft') setVotingSlideIndex((prev) => (prev - 1 + VOTING_GUIDES.length) % VOTING_GUIDES.length);
+          } else if (currentView === 'goals') {
+            if (e.key === 'ArrowRight') setGoalsSlideIndex((prev) => (prev + 1) % GOALS_SLIDES.length);
+            if (e.key === 'ArrowLeft') setGoalsSlideIndex((prev) => (prev - 1 + GOALS_SLIDES.length) % GOALS_SLIDES.length);
           }
         };
 
@@ -536,10 +547,11 @@
       useEffect(() => {
         const handleHashChange = () => {
           const hash = window.location.hash.replace('#', '');
-          if (['home', 'app', 'jisoo-app', 'guidelines', 'voting', 'voting-guidelines', 'projects', 'fan-projects', 'fanbases', 'local-fanbases'].includes(hash)) {
+          if (['home', 'app', 'jisoo-app', 'guidelines', 'voting', 'voting-guidelines', 'goals', 'comeback-goals', 'projects', 'fan-projects', 'fanbases', 'local-fanbases'].includes(hash)) {
             if (hash === 'app' || hash === 'jisoo-app') setCurrentView('app');
             else if (hash === 'guidelines') setCurrentView('guidelines');
             else if (hash === 'voting' || hash === 'voting-guidelines') setCurrentView('voting');
+            else if (hash === 'goals' || hash === 'comeback-goals') setCurrentView('goals');
             else if (hash === 'projects' || hash === 'fan-projects') setCurrentView('projects');
             else if (hash === 'fanbases' || hash === 'local-fanbases') setCurrentView('fanbases');
             else setCurrentView('home');
@@ -563,6 +575,7 @@
 
       const currentStreamingSlide = useMemo(() => STREAMING_GUIDES[streamingSlideIndex], [streamingSlideIndex]);
       const currentVotingSlide = useMemo(() => VOTING_GUIDES[votingSlideIndex], [votingSlideIndex]);
+      const currentGoalsSlide = useMemo(() => GOALS_SLIDES[goalsSlideIndex], [goalsSlideIndex]);
 
       // Filtered local fanbases based on search query
       const filteredFanbases = useMemo(() => {
@@ -771,6 +784,16 @@
                     <p className="text-[11px] font-bold uppercase tracking-wider text-[#513D49] mb-2.5">
                       {currentStreamingSlide.playlistHeader || 'PLAYLISTS'}
                     </p>
+
+                    {/* Spotify Account Switching Reminder Banner */}
+                    {currentStreamingSlide.id === 'spotify' && (
+                      <div className="mb-3 py-2.5 px-3.5 rounded-xl bg-[#513D49]/10 border border-[#513D49]/20 text-center shadow-sm">
+                        <p className="font-extrabold uppercase text-xs sm:text-[13px] tracking-wider text-[#2b1f26]">
+                          REMINDER: SWITCH ACCOUNTS AFTER STREAMING PLAYLISTS
+                        </p>
+                      </div>
+                    )}
+
                     <div className="flex flex-col gap-2">
                       {currentStreamingSlide.playlists.map((pl, idx) => (
                         <a
@@ -847,6 +870,63 @@
                     </button>
                   ))}
                 </div>
+              </div>
+            </main>
+          )}
+
+          {/* VIEW: COMEBACK GOALS */}
+          {currentView === 'goals' && (
+            <main className="w-full bg-white/85 backdrop-blur-xl border border-white/60 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-[#513D49]/20 transition-all duration-300 animate-fade-in">
+              <header className="flex items-center justify-between pb-4 mb-4 border-b border-[#513D49]/15">
+                <button
+                  onClick={() => navigateTo('home')}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#513D49] bg-white/85 hover:bg-[#513D49] hover:text-white border border-[#513D49]/20 px-3.5 py-2 rounded-xl transition-all duration-200 cursor-pointer"
+                >
+                  ← Back
+                </button>
+                <span className="font-serif text-lg tracking-wider text-[#2b1f26]">COMEBACK GOALS</span>
+              </header>
+
+              <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-[#513D49]/10">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-wider bg-[#513D49]/10 text-[#513D49] py-1 px-3 rounded-lg">
+                    {currentGoalsSlide.badge}
+                  </span>
+                </div>
+
+                <div 
+                  className="relative rounded-xl overflow-hidden bg-[#f3eff1] mb-2 cursor-zoom-in group shadow-inner border border-[#513D49]/10"
+                  onClick={() => setLightboxImage(getLh3Url(currentGoalsSlide.imageId))}
+                >
+                  <img
+                    src={getLh3Url(currentGoalsSlide.imageId)}
+                    onError={(e) => {
+                      e.currentTarget.src = getDriveThumb(currentGoalsSlide.imageId, 1200);
+                    }}
+                    alt={currentGoalsSlide.badge}
+                    className="w-full max-h-[550px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.01] pointer-events-none"
+                  />
+                </div>
+
+                {/* Segmented Story Progress Bar (Enabled for multi-slide expansion) */}
+                {GOALS_SLIDES.length > 1 && (
+                  <div className="flex gap-1.5 w-full">
+                    {GOALS_SLIDES.map((slide, idx) => (
+                      <button
+                        key={slide.id}
+                        onClick={() => setGoalsSlideIndex(idx)}
+                        title={slide.badge}
+                        className="flex-1 h-1.5 rounded-full overflow-hidden transition-all bg-[#513D49]/20 hover:bg-[#513D49]/40 cursor-pointer"
+                      >
+                        <div 
+                          className={`h-full transition-all duration-300 ${
+                            idx === goalsSlideIndex ? 'w-full bg-[#513D49] shadow-sm' : idx < goalsSlideIndex ? 'w-full bg-[#513D49]/80' : 'w-0'
+                          }`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </main>
           )}
